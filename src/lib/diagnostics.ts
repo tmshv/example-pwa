@@ -28,10 +28,10 @@ export interface DiagnosticsSnapshot {
 export function readInsetsFromProbe(probe: HTMLElement): Insets {
   const cs = getComputedStyle(probe)
   return {
-    top:    parseInt(cs.paddingTop,    10) || 0,
-    right:  parseInt(cs.paddingRight,  10) || 0,
-    bottom: parseInt(cs.paddingBottom, 10) || 0,
-    left:   parseInt(cs.paddingLeft,   10) || 0,
+    top:    Math.round(parseFloat(cs.paddingTop)    || 0),
+    right:  Math.round(parseFloat(cs.paddingRight)  || 0),
+    bottom: Math.round(parseFloat(cs.paddingBottom) || 0),
+    left:   Math.round(parseFloat(cs.paddingLeft)   || 0),
   }
 }
 

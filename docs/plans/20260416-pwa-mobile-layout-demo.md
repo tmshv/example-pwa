@@ -1061,7 +1061,7 @@ git commit -m "Add Diagnostics class with unit tests for pure helpers"
 **Files:**
 - Create: `src/components/diagnostics-view.ts`
 
-- [ ] **Step 1: Write `src/components/diagnostics-view.ts`**
+- [x] **Step 1: Write `src/components/diagnostics-view.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -1181,7 +1181,7 @@ class DiagnosticsView extends HTMLElement {
 customElements.define('diagnostics-view', DiagnosticsView)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/diagnostics-view.ts

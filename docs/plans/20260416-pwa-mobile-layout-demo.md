@@ -862,7 +862,7 @@ git commit -m "Add <about-view> with requirement list"
 - Create: `src/lib/diagnostics.ts`
 - Test: `tests/diagnostics.test.ts`
 
-- [ ] **Step 1: Write the failing test first**
+- [x] **Step 1: Write the failing test first**
 
 Create `tests/diagnostics.test.ts`:
 
@@ -905,12 +905,12 @@ describe('computeColorScheme', () => {
 })
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run`
 Expected: FAIL — `Cannot find module '../src/lib/diagnostics'` or `readInsetsFromProbe is not a function`.
 
-- [ ] **Step 3: Write `src/lib/diagnostics.ts` to make tests pass**
+- [x] **Step 3: Write `src/lib/diagnostics.ts` to make tests pass**
 
 ```ts
 export interface Insets {
@@ -1042,12 +1042,12 @@ export class Diagnostics {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `npx vitest run`
 Expected: PASS — 3 tests passing.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/diagnostics.ts tests/diagnostics.test.ts

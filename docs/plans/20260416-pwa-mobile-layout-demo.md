@@ -276,7 +276,7 @@ git commit -m "Add index.html with PWA viewport and theme-color metas"
 - Create: `src/styles/tokens.css`
 - Create: `src/styles/app.css`
 
-- [ ] **Step 1: Write `src/styles/reset.css`**
+- [x] **Step 1: Write `src/styles/reset.css`**
 
 ```css
 *, *::before, *::after { box-sizing: border-box; }
@@ -285,7 +285,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 input, textarea, select { font: inherit; }
 ```
 
-- [ ] **Step 2: Write `src/styles/tokens.css`**
+- [x] **Step 2: Write `src/styles/tokens.css`**
 
 ```css
 :root {
@@ -317,7 +317,7 @@ input, textarea, select { font: inherit; }
 }
 ```
 
-- [ ] **Step 3: Write `src/styles/app.css`**
+- [x] **Step 3: Write `src/styles/app.css`**
 
 ```css
 html, body {
@@ -348,7 +348,7 @@ app-shell[update-available] {
 }
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/styles

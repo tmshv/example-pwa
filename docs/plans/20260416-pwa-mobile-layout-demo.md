@@ -728,7 +728,7 @@ git commit -m "Add <app-update-banner> with reload and dismiss actions"
 **Files:**
 - Create: `src/components/feed-view.ts`
 
-- [ ] **Step 1: Write `src/components/feed-view.ts`**
+- [x] **Step 1: Write `src/components/feed-view.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -777,7 +777,7 @@ class FeedView extends HTMLElement {
 customElements.define('feed-view', FeedView)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/feed-view.ts

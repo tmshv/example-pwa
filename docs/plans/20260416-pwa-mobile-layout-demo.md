@@ -791,7 +791,7 @@ git commit -m "Add <feed-view> with sample cards"
 **Files:**
 - Create: `src/components/about-view.ts`
 
-- [ ] **Step 1: Write `src/components/about-view.ts`**
+- [x] **Step 1: Write `src/components/about-view.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -847,7 +847,7 @@ class AboutView extends HTMLElement {
 customElements.define('about-view', AboutView)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/about-view.ts

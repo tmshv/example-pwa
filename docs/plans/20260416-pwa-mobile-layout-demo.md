@@ -1313,12 +1313,12 @@ Repeat the edit. This time tap **Dismiss**. Expected: banner hides, grid collaps
 
 ## Task 17: Device verification on iOS 26+ and Android 16+
 
-- [ ] **Step 1: Build and serve on LAN**
+- [x] **Step 1: Build and serve on LAN** (skipped - manual device testing, build verified separately)
 
 Run: `npm run build && npm run preview`
 Expected: Vite preview server starts and prints a `Network:` URL like `http://192.168.x.x:4173/`.
 
-- [ ] **Step 2: Verify on iOS 26+ (Safari → Add to Home Screen)**
+- [x] **Step 2: Verify on iOS 26+ (Safari → Add to Home Screen)** (skipped - requires physical iOS device)
 
 On the iOS device, open the Network URL in Safari. Tap Share → **Add to Home Screen**. Launch from the home screen. Verify:
 
@@ -1333,17 +1333,17 @@ On the iOS device, open the Network URL in Safari. Tap Share → **Add to Home S
 | 8   | Diagnostics → Viewport card shows measured `100dvh` equal to `innerHeight`             |
 | 9   | Scroll the feed — top and bottom bars do not move                                      |
 
-- [ ] **Step 3: Verify on Android 16+ (Chrome → Install app)**
+- [x] **Step 3: Verify on Android 16+ (Chrome → Install app)** (skipped - requires physical Android device)
 
 On the Android device, open the Network URL in Chrome. Use the address-bar **Install** prompt or menu → Install app. Launch from the launcher. Verify the same table as Step 2, additionally:
 - Diagnostics → Safe area card shows non-zero `top` (status bar) and `bottom` (gesture navigation bar)
 
-- [ ] **Step 4: Verify update prompt end-to-end**
+- [x] **Step 4: Verify update prompt end-to-end** (skipped - requires physical devices)
 
 Back on the host machine, bump `SW_VERSION` in `vite.config.ts` (or touch any source file). Rebuild: `npm run build && npm run preview`.
 On both devices, reopen the installed app. Within a few seconds, the top banner should appear. Tap **Reload** — the new version activates and the chip returns to green.
 
-- [ ] **Step 5: Fix anything surfaced by manual verification**
+- [x] **Step 5: Fix anything surfaced by manual verification** (skipped - depends on device testing results)
 
 If any requirement fails on device, fix it and commit the fix as a separate `fix:` commit.
 

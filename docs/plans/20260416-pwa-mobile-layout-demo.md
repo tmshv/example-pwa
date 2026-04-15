@@ -364,7 +364,7 @@ Every component builds its shadow tree through these helpers. **We never assign 
 **Files:**
 - Create: `src/lib/dom.ts`
 
-- [ ] **Step 1: Write `src/lib/dom.ts`**
+- [x] **Step 1: Write `src/lib/dom.ts`**
 
 ```ts
 type Child = Node | string
@@ -391,7 +391,7 @@ export function style(css: string): HTMLStyleElement {
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/lib/dom.ts

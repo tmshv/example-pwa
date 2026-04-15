@@ -547,7 +547,7 @@ git commit -m "Add <app-top-bar> with title and status chip"
 **Files:**
 - Create: `src/components/app-bottom-bar.ts`
 
-- [ ] **Step 1: Write `src/components/app-bottom-bar.ts`**
+- [x] **Step 1: Write `src/components/app-bottom-bar.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -609,7 +609,7 @@ class AppBottomBar extends HTMLElement {
 customElements.define('app-bottom-bar', AppBottomBar)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/app-bottom-bar.ts

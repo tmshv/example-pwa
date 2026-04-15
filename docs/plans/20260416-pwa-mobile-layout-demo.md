@@ -623,7 +623,7 @@ git commit -m "Add <app-bottom-bar> with three tabs"
 **Files:**
 - Create: `src/components/app-content.ts`
 
-- [ ] **Step 1: Write `src/components/app-content.ts`**
+- [x] **Step 1: Write `src/components/app-content.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -648,7 +648,7 @@ class AppContent extends HTMLElement {
 customElements.define('app-content', AppContent)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/app-content.ts

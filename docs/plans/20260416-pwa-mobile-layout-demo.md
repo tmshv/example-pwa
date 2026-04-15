@@ -662,7 +662,7 @@ git commit -m "Add <app-content> scroll container"
 **Files:**
 - Create: `src/components/app-update-banner.ts`
 
-- [ ] **Step 1: Write `src/components/app-update-banner.ts`**
+- [x] **Step 1: Write `src/components/app-update-banner.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -714,7 +714,7 @@ class AppUpdateBanner extends HTMLElement {
 customElements.define('app-update-banner', AppUpdateBanner)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/app-update-banner.ts

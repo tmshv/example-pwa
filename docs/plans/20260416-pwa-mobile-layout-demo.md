@@ -79,7 +79,7 @@ Responsibility per file:
 - Create: `tsconfig.json`
 - Create: `.gitignore`
 
-- [ ] **Step 1: Create `package.json`**
+- [x] **Step 1: Create `package.json`**
 
 ```json
 {
@@ -104,7 +104,7 @@ Responsibility per file:
 }
 ```
 
-- [ ] **Step 2: Create `tsconfig.json`**
+- [x] **Step 2: Create `tsconfig.json`**
 
 ```json
 {
@@ -128,7 +128,7 @@ Responsibility per file:
 }
 ```
 
-- [ ] **Step 3: Create `.gitignore`**
+- [x] **Step 3: Create `.gitignore`**
 
 ```
 node_modules
@@ -138,12 +138,12 @@ dev-dist
 *.log
 ```
 
-- [ ] **Step 4: Install dependencies**
+- [x] **Step 4: Install dependencies**
 
 Run: `npm install`
 Expected: packages installed; `node_modules/` populated; `package-lock.json` created.
 
-- [ ] **Step 5: Initialize git and commit**
+- [x] **Step 5: Initialize git and commit**
 
 ```bash
 git init

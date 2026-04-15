@@ -405,7 +405,7 @@ git commit -m "Add h() and style() DOM helpers"
 **Files:**
 - Create: `src/components/app-shell.ts`
 
-- [ ] **Step 1: Write `src/components/app-shell.ts`**
+- [x] **Step 1: Write `src/components/app-shell.ts`**
 
 ```ts
 export type Tab = 'feed' | 'diagnostics' | 'about'
@@ -446,7 +446,7 @@ class AppShell extends HTMLElement {
 customElements.define('app-shell', AppShell)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/app-shell.ts

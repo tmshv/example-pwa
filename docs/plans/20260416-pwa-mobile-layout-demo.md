@@ -233,7 +233,7 @@ git commit -m "Configure Vite, vite-plugin-pwa, and Vitest (jsdom)"
 **Files:**
 - Create: `index.html`
 
-- [ ] **Step 1: Write `index.html`**
+- [x] **Step 1: Write `index.html`**
 
 ```html
 <!doctype html>
@@ -260,7 +260,7 @@ git commit -m "Configure Vite, vite-plugin-pwa, and Vitest (jsdom)"
 </html>
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add index.html

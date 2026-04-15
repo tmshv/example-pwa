@@ -1,2 +1,1 @@
-# example-pwa
-Mobile PWA Layout
+# Demo PWA layout

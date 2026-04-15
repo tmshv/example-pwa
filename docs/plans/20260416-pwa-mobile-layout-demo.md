@@ -1196,7 +1196,7 @@ git commit -m "Add <diagnostics-view> bound to shared Diagnostics instance"
 - Create: `src/lib/sw-register.ts`
 - Create: `src/main.ts`
 
-- [ ] **Step 1: Write `src/lib/sw-register.ts`**
+- [x] **Step 1: Write `src/lib/sw-register.ts`**
 
 ```ts
 import { registerSW } from 'virtual:pwa-register'
@@ -1212,7 +1212,7 @@ export function initSW(onState: (s: SwState) => void) {
 }
 ```
 
-- [ ] **Step 2: Write `src/main.ts`**
+- [x] **Step 2: Write `src/main.ts`**
 
 ```ts
 import './styles/reset.css'
@@ -1256,12 +1256,12 @@ const reloadSW = initSW((state) => {
 shell.addEventListener('reload-app', () => { reloadSW() })
 ```
 
-- [ ] **Step 3: Type-check the project**
+- [x] **Step 3: Type-check the project**
 
 Run: `npx tsc -b`
 Expected: exits with code 0; no output.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/lib/sw-register.ts src/main.ts

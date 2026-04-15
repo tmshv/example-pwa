@@ -159,7 +159,7 @@ git commit -m "Bootstrap Vite + TS project"
 - Create: `vite.config.ts`
 - Create: `src/global.d.ts`
 
-- [ ] **Step 1: Create `vite.config.ts`**
+- [x] **Step 1: Create `vite.config.ts`**
 
 ```ts
 /// <reference types="vitest" />
@@ -202,7 +202,7 @@ export default defineConfig({
 })
 ```
 
-- [ ] **Step 2: Create `src/global.d.ts`**
+- [x] **Step 2: Create `src/global.d.ts`**
 
 ```ts
 declare const __SW_VERSION__: string
@@ -219,7 +219,7 @@ declare module 'virtual:pwa-register' {
 }
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add vite.config.ts src/global.d.ts

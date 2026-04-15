@@ -36,4 +36,6 @@ const reloadSW = initSW((state) => {
   diag.setSwState(state)
   shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
 })
-shell.addEventListener('reload-app', () => { reloadSW() })
+shell.addEventListener('reload-app', () => {
+  reloadSW().catch((err) => console.error('SW reload failed:', err))
+})

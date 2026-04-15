@@ -28,6 +28,9 @@ export default defineConfig({
         theme_color: '#0b0b0c',
         start_url: '/',
         scope: '/',
+        icons: [
+          { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+        ],
       },
       devOptions: { enabled: true, type: 'module' },
     }),

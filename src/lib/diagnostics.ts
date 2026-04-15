@@ -1,3 +1,5 @@
+import type { SwState } from './sw-register'
+
 export interface Insets {
   top: number
   right: number
@@ -15,7 +17,7 @@ export interface DiagnosticsSnapshot {
   standalone: boolean
   online: boolean
   colorScheme: 'light' | 'dark'
-  swState: 'idle' | 'update-available' | 'offline-ready'
+  swState: SwState
   swVersion: string
   scrollTop: number
   scrollMax: number
@@ -94,7 +96,7 @@ export class Diagnostics {
   getSnapshot(): DiagnosticsSnapshot {
     const content = this.contentEl
     const scrollTop = content?.scrollTop ?? 0
-    const scrollMax = content ? content.scrollHeight - content.clientHeight : 0
+    const scrollMax = content ? Math.max(0, content.scrollHeight - content.clientHeight) : 0
     const uaData = (navigator as Navigator & { userAgentData?: { platform?: string } }).userAgentData
     return {
       insets:       readInsetsFromProbe(this.insetProbe),

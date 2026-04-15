@@ -460,7 +460,7 @@ git commit -m "Add <app-shell> with tab routing and SW state handling"
 **Files:**
 - Create: `src/components/app-top-bar.ts`
 
-- [ ] **Step 1: Write `src/components/app-top-bar.ts`**
+- [x] **Step 1: Write `src/components/app-top-bar.ts`**
 
 ```ts
 import { h, style } from '../lib/dom'
@@ -533,7 +533,7 @@ class AppTopBar extends HTMLElement {
 customElements.define('app-top-bar', AppTopBar)
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/components/app-top-bar.ts

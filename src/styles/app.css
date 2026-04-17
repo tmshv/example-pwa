@@ -31,8 +31,8 @@ app-top-bar,
 app-bottom-bar,
 app-update-banner {
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 16px;
+  right: 16px;
   z-index: 10;
 }
 

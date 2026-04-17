@@ -1,6 +1,5 @@
 import { h, style } from '../lib/dom'
 import { Diagnostics, type DiagnosticsSnapshot } from '../lib/diagnostics'
-import type { CardFill } from '../lib/card-fill'
 
 let sharedDiagnostics: Diagnostics | null = null
 export function getDiagnostics(): Diagnostics {
@@ -8,72 +7,56 @@ export function getDiagnostics(): Diagnostics {
   return sharedDiagnostics
 }
 
-const FILLS: Record<string, CardFill> = {
-  'Safe area insets': { gradient: 'linear-45',       from: 'sky',    to: 'mint'   },
-  'Viewport':         { gradient: 'linear-vertical', from: 'peach',  to: 'butter' },
-  'Display mode':     { gradient: 'radial-tl',       from: 'lilac',  to: 'blush'  },
-  'Network and SW':   { gradient: 'linear-135',      from: 'mint',   to: 'sky'    },
-  'Scroll':           { gradient: 'radial-br',       from: 'butter', to: 'peach'  },
-  'Platform':         { gradient: 'radial-center',   from: 'blush',  to: 'lilac'  },
-}
-
-const K_STYLE = 'color: var(--muted);'
-const V_STYLE = 'color: var(--fg); font-variant-numeric: tabular-nums;'
-const V_SMALL_STYLE = 'color: var(--fg); font-size: 11px; word-break: break-all;'
-
 function row(label: string, value: string): HTMLElement {
   return h('div', { class: 'row' },
-    h('span', { class: 'k', style: K_STYLE }, label),
-    h('span', { class: 'v', style: V_STYLE }, value),
+    h('span', { class: 'k' }, label),
+    h('span', { class: 'v' }, value),
   )
 }
 
-function card(title: string, ...rows: HTMLElement[]): HTMLElement {
-  const fill = FILLS[title]
-  return h('diagnostic-card', {
-    title,
-    'data-gradient': fill.gradient,
-    'data-from':     fill.from,
-    'data-to':       fill.to,
-  }, ...rows)
+function section(title: string, ...rows: HTMLElement[]): HTMLElement {
+  return h('section', {},
+    h('h3', {}, `---- ${title.toUpperCase()} ----`),
+    ...rows,
+  )
 }
 
 function build(snap: DiagnosticsSnapshot): DocumentFragment {
   const frag = document.createDocumentFragment()
 
   frag.append(
-    card('Safe area insets',
+    section('Safe area insets',
       row('top',    snap.insets.top    + 'px'),
       row('right',  snap.insets.right  + 'px'),
       row('bottom', snap.insets.bottom + 'px'),
       row('left',   snap.insets.left   + 'px'),
     ),
-    card('Viewport',
+    section('Viewport',
       row('innerWidth x innerHeight', snap.innerWidth + ' x ' + snap.innerHeight),
       row('visualViewport.height',    snap.visualHeight + 'px'),
       row('100dvh (measured)',        snap.dvh + 'px'),
       row('devicePixelRatio',         String(snap.dpr)),
     ),
-    card('Display mode',
+    section('Display mode',
       row('standalone',   String(snap.standalone)),
       row('color scheme', snap.colorScheme),
     ),
-    card('Network and SW',
+    section('Network and SW',
       row('online',    String(snap.online)),
       row('swState',   snap.swState),
       row('swVersion', snap.swVersion),
     ),
-    card('Scroll',
+    section('Scroll',
       row('scrollTop', snap.scrollTop + 'px'),
       row('scrollMax', snap.scrollMax + 'px'),
     ),
   )
 
-  const platform = card('Platform', row('platform', snap.platform))
+  const platform = section('Platform', row('platform', snap.platform))
   platform.append(
     h('div', { class: 'row wrap' },
-      h('span', { class: 'k', style: K_STYLE }, 'ua'),
-      h('span', { class: 'v small', style: V_SMALL_STYLE }, snap.ua),
+      h('span', { class: 'k' }, 'ua'),
+      h('span', { class: 'v small' }, snap.ua),
     ),
   )
   frag.append(platform)
@@ -81,7 +64,26 @@ function build(snap: DiagnosticsSnapshot): DocumentFragment {
   return frag
 }
 
-const CSS = `:host { display: block; font-family: var(--font); }`
+const CSS = `
+  :host { display: block; font-family: var(--font); color: var(--fg); }
+  section {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+  .row.wrap { flex-direction: column; gap: 4px; }
+  .k { color: var(--muted); }
+  .v { color: var(--fg); font-variant-numeric: tabular-nums; }
+  .v.small { font-size: 11px; word-break: break-all; }
+`
 
 class DiagnosticsView extends HTMLElement {
   private container: HTMLElement

@@ -24,33 +24,28 @@ app-shell {
 app-content {
   display: block;
   height: 100%;
-  margin: 0 20px;
+  margin: 0 16px;
 }
 
 app-top-bar,
 app-bottom-bar,
 app-update-banner {
   position: absolute;
-  left: 20px;
-  right: 20px;
+  left: 12px;
+  right: 12px;
   z-index: 10;
 }
 
 app-top-bar {
-  top: calc(env(safe-area-inset-top) + var(--float-gap));
-  left: 10px;
-  right: 10px;
-  padding: 10px 20px;
+  top: calc(env(safe-area-inset-top) + 8px);
+  padding: 10px 16px;
 }
 
 app-update-banner {
-  top: calc(env(safe-area-inset-top) + var(--float-gap) + 56px);
-  padding: 12px 18px;
+  top: calc(env(safe-area-inset-top) + 8px + 44px);
+  padding: 8px 14px;
 }
 
 app-bottom-bar {
-  bottom: calc(env(safe-area-inset-bottom) + var(--float-gap));
-  left: 10px;
-  right: 10px;
-  padding: 0 6px;
+  bottom: calc(env(safe-area-inset-bottom) + 8px);
 }

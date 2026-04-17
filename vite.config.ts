@@ -34,7 +34,7 @@ export default defineConfig({
           { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
         ],
       },
-      devOptions: { enabled: true, type: 'module' },
+      devOptions: { enabled: false, type: 'module' },
     }),
   ],
   test: {

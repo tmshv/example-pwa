@@ -13,7 +13,7 @@ const REQUIREMENTS: Array<[string, string]> = [
 ]
 
 const CSS = `
-  :host { display: block; padding: 16px; }
+  :host { display: block; }
   h2 { font-size: 17px; font-weight: 600; margin-bottom: 12px; }
   ol { list-style: decimal inside; }
   li {

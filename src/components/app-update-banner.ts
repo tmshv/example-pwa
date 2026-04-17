@@ -5,10 +5,11 @@ const CSS = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
     background: var(--accent);
     color: white;
     font-size: 14px;
+    border-radius: var(--radius-floating);
+    box-shadow: var(--shadow-floating);
   }
   :host([hidden]) { display: none; }
   .actions { display: flex; gap: 12px; }

@@ -67,7 +67,7 @@ function build(snap: DiagnosticsSnapshot): DocumentFragment {
 }
 
 const CSS = `
-  :host { display: block; padding: 12px 12px 32px; }
+  :host { display: block; }
   section {
     background: var(--surface);
     border: 1px solid var(--border);

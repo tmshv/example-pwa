@@ -14,13 +14,43 @@ html, body {
 }
 
 app-shell {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: block;
+  position: relative;
   height: 100dvh;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
 
-app-shell[update-available] {
-  grid-template-rows: auto auto 1fr auto;
+app-content {
+  display: block;
+  height: 100%;
+  margin: 0 20px;
+}
+
+app-top-bar,
+app-bottom-bar,
+app-update-banner {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+app-top-bar {
+  top: calc(env(safe-area-inset-top) + var(--float-gap));
+  left: 10px;
+  right: 10px;
+  padding: 10px 20px;
+}
+
+app-update-banner {
+  top: calc(env(safe-area-inset-top) + var(--float-gap) + 56px);
+  padding: 12px 18px;
+}
+
+app-bottom-bar {
+  bottom: calc(env(safe-area-inset-bottom) + var(--float-gap));
+  left: 10px;
+  right: 10px;
+  padding: 0 6px;
 }

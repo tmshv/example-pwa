@@ -5,12 +5,14 @@ const CSS = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
-    padding-top: calc(env(safe-area-inset-top) + 8px);
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background: var(--surface-floating);
+    border: 1px solid var(--border-floating);
+    border-radius: 25px;
+    box-shadow: var(--shadow-floating);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
-  h1 { font-size: 17px; font-weight: 600; }
+  h1 { font-size: 16px; font-weight: 600; }
   button.chip {
     display: inline-flex;
     align-items: center;
@@ -20,6 +22,10 @@ const CSS = `
     border: 1px solid var(--border);
     font-size: 12px;
     color: var(--muted);
+    background: rgba(255, 255, 255, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    button.chip { background: rgba(255, 255, 255, 0.05); }
   }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
   :host([status="update"])  .dot { background: var(--warn); }
@@ -41,8 +47,7 @@ class AppTopBar extends HTMLElement {
       this.labelEl,
     )
     chip.addEventListener('click', () => {
-      this.dispatchEvent(new CustomEvent('tab-change', {
-        detail: 'diagnostics',
+      this.dispatchEvent(new CustomEvent('check-update', {
         bubbles: true,
         composed: true,
       }))

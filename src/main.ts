@@ -32,10 +32,18 @@ diag.subscribe((snap) => {
   }
 })
 
-const reloadSW = initSW((state) => {
+const sw = initSW((state) => {
   diag.setSwState(state)
   shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
 })
 shell.addEventListener('reload-app', () => {
-  reloadSW().catch((err) => console.error('SW reload failed:', err))
+  sw.reload().catch((err) => console.error('SW reload failed:', err))
 })
+shell.addEventListener('check-update', () => {
+  sw.checkForUpdate()
+})
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') sw.checkForUpdate()
+})
+setInterval(() => sw.checkForUpdate(), 60_000)

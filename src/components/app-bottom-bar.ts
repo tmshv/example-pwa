@@ -10,12 +10,45 @@ const CSS = `
   :host {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding-bottom: env(safe-area-inset-bottom);
+    gap: 6px;
+    background: var(--surface-floating);
+    border: 1px solid var(--border-floating);
+    border-radius: 25px;
+    box-shadow: var(--shadow-floating);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
-  button { padding: 10px 0 12px; font-size: 11px; color: var(--muted); }
-  button[data-active="true"] { color: var(--accent); font-weight: 600; }
+  button {
+    position: relative;
+    padding: 10px 0;
+    margin: 6px 0;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    border-radius: 16px;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  button + button::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: -3px;
+    width: 1px;
+    background: var(--border);
+  }
+  button[data-active="true"] {
+    color: var(--accent);
+    font-weight: 600;
+    background: rgba(37, 99, 235, 0.12);
+  }
+  button[data-active="true"]::before,
+  button[data-active="true"] + button::before {
+    opacity: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    button[data-active="true"] { background: rgba(96, 165, 250, 0.18); }
+  }
 `
 
 class AppBottomBar extends HTMLElement {

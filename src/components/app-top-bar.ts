@@ -5,7 +5,9 @@ const CSS = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+            backdrop-filter: blur(16px) saturate(160%);
     border: 1px solid var(--border);
     font-family: var(--font);
     color: var(--fg);

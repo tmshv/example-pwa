@@ -31,20 +31,13 @@ type Accent =
   | { pattern: 'slashes'; fill: CardFill }
   | { pattern: 'plus';    fill: CardFill }
   | { pattern: 'both' }
+  | { pattern: 'cross' }
 
-const ACCENTS: Accent[] = [
-  { pattern: 'slashes', fill: { gradient: 'linear-45',     from: 'peach', to: 'butter' } },
-  { pattern: 'plus',    fill: { gradient: 'radial-tl',     from: 'mint',  to: 'sky'    } },
-  { pattern: 'both' },
-]
-
-function pickAccentIndices(total: number, count: number): number[] {
-  const pool = Array.from({ length: total }, (_, i) => i)
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[pool[i], pool[j]] = [pool[j], pool[i]]
-  }
-  return pool.slice(0, count).sort((a, b) => a - b)
+const ACCENT_BY_INDEX: Record<number, Accent> = {
+  1:  { pattern: 'slashes', fill: { gradient: 'linear-45', from: 'peach', to: 'butter' } },
+  4:  { pattern: 'cross' },
+  7:  { pattern: 'plus',    fill: { gradient: 'radial-tl', from: 'mint',  to: 'sky'    } },
+  12: { pattern: 'both' },
 }
 
 const CSS = `:host { display: block; }`
@@ -55,20 +48,16 @@ class FeedView extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.append(style(CSS))
 
-    const picks = pickAccentIndices(SAMPLES.length, ACCENTS.length)
-    const accentByIndex = new Map<number, Accent>()
-    picks.forEach((idx, i) => accentByIndex.set(idx, ACCENTS[i]))
-
     SAMPLES.forEach((s, idx) => {
       const attrs: Record<string, string> = {
         title: s.title,
         body: s.body,
         height: String(s.height),
       }
-      const accent = accentByIndex.get(idx)
+      const accent = ACCENT_BY_INDEX[idx]
       if (accent) {
         attrs['data-pattern'] = accent.pattern
-        if (accent.pattern !== 'both') {
+        if ('fill' in accent) {
           attrs['data-gradient'] = accent.fill.gradient
           attrs['data-from'] = accent.fill.from
           attrs['data-to'] = accent.fill.to

@@ -21,6 +21,28 @@ app-shell {
   padding-right: env(safe-area-inset-right);
 }
 
+app-shell::before,
+app-shell::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+app-shell::before {
+  top: 0;
+  height: calc(env(safe-area-inset-top) + 10px + 64px);
+  background: linear-gradient(to bottom, var(--bg) 10px, transparent);
+}
+
+app-shell::after {
+  bottom: 0;
+  height: calc(env(safe-area-inset-bottom) + 64px);
+  background: linear-gradient(to top, var(--bg), transparent);
+}
+
 app-content {
   display: block;
   height: 100%;
@@ -28,6 +50,7 @@ app-content {
 }
 
 app-top-bar,
+app-bottom-bar,
 app-update-banner {
   position: absolute;
   left: 16px;
@@ -46,9 +69,5 @@ app-update-banner {
 }
 
 app-bottom-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
+  bottom: calc(env(safe-area-inset-bottom) + 8px);
 }

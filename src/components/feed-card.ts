@@ -36,6 +36,13 @@ const CSS = `
             mask-size: auto;
     pointer-events: none;
   }
+  :host([data-pattern="cross"])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/patterns/pattern-cross.svg") no-repeat center / 100% 100%;
+    pointer-events: none;
+  }
   .content { position: relative; z-index: 1; }
   h2 { font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.02em; }
   p  { font-size: 13px; line-height: 1.45; color: var(--fg); }

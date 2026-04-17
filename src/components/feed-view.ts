@@ -21,8 +21,10 @@ const SAMPLES: Sample[] = [
   { title: 'Mint',             body: 'Fresh green melting into aquamarine.',      height: 190, fill: { gradient: 'linear-45',         from: 'mint',   to: 'sky'    } },
   { title: 'Safe-area demo',   body: 'Scroll to the bottom \u2014 the bar never clips.', height: 160, fill: { gradient: 'linear-horizontal', from: 'blush', to: 'lilac' } },
   { title: 'Berry',            body: 'Magenta drifting into plum.',               height: 210, fill: { gradient: 'linear-135',        from: 'blush',  to: 'lilac'  } },
-  { title: 'Overscroll test',  body: 'Pull past the edges. Nothing stretches.',   height: 130, fill: { gradient: 'radial-tl',         from: 'peach',  to: 'sky'    } },
-  { title: 'Graphite',         body: 'Slate gradient with a soft inner glow.',    height: 180, fill: { gradient: 'linear-vertical',   from: 'lilac',  to: 'sky'    } },
+  { title: 'Overscroll test',   body: 'Pull past the edges. Nothing stretches.', height: 130, fill: { gradient: 'radial-tl',         from: 'peach',  to: 'sky'    } },
+  { title: 'Release candidate', body: 'Tag, QA pass, then ship.',                height: 150, fill: { gradient: 'radial-center',     from: 'sky',    to: 'butter' } },
+  { title: 'Lavender',          body: 'Muted violet into cool periwinkle.',      height: 200, fill: { gradient: 'linear-horizontal', from: 'lilac',  to: 'sky'    } },
+  { title: 'Graphite',          body: 'Slate gradient with a soft inner glow.',  height: 180, fill: { gradient: 'linear-vertical',   from: 'lilac',  to: 'sky'    } },
   { title: 'End of feed',      body: 'That is all for now.',                      height: 140, fill: { gradient: 'radial-center',     from: 'butter', to: 'blush'  } },
 ]
 

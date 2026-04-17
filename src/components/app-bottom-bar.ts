@@ -34,6 +34,10 @@ const CSS = `
     width: 1px;
     background: var(--border);
   }
+  button[data-active="true"]::before,
+  button[data-active="true"] + button::before {
+    opacity: 0;
+  }
   button[data-active="true"] {
     color: var(--fg);
     background: var(--pastel-butter);

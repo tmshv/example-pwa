@@ -28,7 +28,6 @@ app-content {
 }
 
 app-top-bar,
-app-bottom-bar,
 app-update-banner {
   position: absolute;
   left: 16px;
@@ -47,5 +46,9 @@ app-update-banner {
 }
 
 app-bottom-bar {
-  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
 }

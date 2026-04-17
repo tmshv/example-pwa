@@ -11,7 +11,8 @@ const CSS = `
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background: var(--bg);
-    border: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom);
     font-family: var(--font);
   }
   button {

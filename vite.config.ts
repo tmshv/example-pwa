@@ -23,6 +23,7 @@ export default defineConfig({
         short_name: 'Layout',
         description: 'Mobile PWA layout reference',
         display: 'standalone',
+        display_override: ['fullscreen', 'standalone'],
         orientation: 'portrait',
         background_color: '#0b0b0c',
         theme_color: '#0b0b0c',

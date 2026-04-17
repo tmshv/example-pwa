@@ -20,8 +20,8 @@ const CSS = `
     background: var(--pattern-ink);
     -webkit-mask: url("/patterns/pattern-slashes.svg") repeat;
             mask: url("/patterns/pattern-slashes.svg") repeat;
-    -webkit-mask-size: 10px 10px;
-            mask-size: 10px 10px;
+    -webkit-mask-size: 16px 16px;
+            mask-size: 16px 16px;
     pointer-events: none;
   }
   :host([data-pattern="plus"])::after,
@@ -32,8 +32,8 @@ const CSS = `
     background: var(--pattern-ink);
     -webkit-mask: url("/patterns/pattern-plus.svg") repeat;
             mask: url("/patterns/pattern-plus.svg") repeat;
-    -webkit-mask-size: 14px 14px;
-            mask-size: 14px 14px;
+    -webkit-mask-size: 16px 16px;
+            mask-size: 16px 16px;
     pointer-events: none;
   }
   .content { position: relative; z-index: 1; }

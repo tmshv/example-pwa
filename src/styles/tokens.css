@@ -15,14 +15,6 @@
   --pastel-lilac:   #e2d4f2;
   --pastel-butter:  #fff2c2;
   --pastel-blush:   #f5d0dc;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:            #1d3a8a;
-    --fg:            #ffffff;
-    --border:        #ffffff;
-    --muted:         rgba(255, 255, 255, 0.7);
-    --pattern-ink:   rgba(255, 255, 255, 0.55);
-  }
+  color-scheme: light;
 }

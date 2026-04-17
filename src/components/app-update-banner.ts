@@ -2,24 +2,43 @@ import { h, style } from '../lib/dom'
 
 const CSS = `
   :host {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--accent);
-    color: white;
-    font-size: 14px;
-    border-radius: var(--radius-floating);
-    box-shadow: var(--shadow-floating);
+    background: var(--pastel-blush);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
   :host([hidden]) { display: none; }
-  .actions { display: flex; gap: 12px; }
-  button {
-    padding: 4px 8px;
-    border-radius: 6px;
-    color: white;
-    font-weight: 600;
+  :host::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--pattern-ink);
+    -webkit-mask: url("/patterns/pattern-dots.svg") repeat;
+            mask: url("/patterns/pattern-dots.svg") repeat;
+    -webkit-mask-size: 8px 8px;
+            mask-size: 8px 8px;
+    pointer-events: none;
   }
-  button.primary { background: rgba(255, 255, 255, 0.2); }
+  .label, .actions { position: relative; z-index: 1; }
+  .actions { display: flex; gap: 8px; }
+  button {
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  button.primary { background: var(--pastel-blush); }
 `
 
 class AppUpdateBanner extends HTMLElement {
@@ -27,19 +46,19 @@ class AppUpdateBanner extends HTMLElement {
     super()
     const shadow = this.attachShadow({ mode: 'open' })
 
-    const reload = h('button', { class: 'primary', type: 'button' }, 'Reload')
+    const reload = h('button', { class: 'primary', type: 'button' }, '[ RELOAD ]')
     reload.addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('reload-app', { bubbles: true, composed: true }))
     })
 
-    const dismiss = h('button', { type: 'button' }, 'Dismiss')
+    const dismiss = h('button', { type: 'button' }, '[ DISMISS ]')
     dismiss.addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('dismiss-update', { bubbles: true, composed: true }))
     })
 
     shadow.append(
       style(CSS),
-      h('span', {}, 'New version available'),
+      h('span', { class: 'label' }, 'NEW VERSION AVAILABLE'),
       h('div', { class: 'actions' }, reload, dismiss),
     )
   }

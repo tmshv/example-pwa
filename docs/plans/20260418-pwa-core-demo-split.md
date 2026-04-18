@@ -165,8 +165,8 @@ git mv src/lib/dom.ts src/app/lib/dom.ts
 - Modify: all import paths inside `src/app/main.ts`
 - Modify: `index.html` (`<script>` src attribute)
 
-- [ ] Run: `git mv src/main.ts src/app/main.ts`
-- [ ] Open `src/app/main.ts`. Every `./core/…` import becomes `../core/…`. Every `./app/…` import becomes `./` (shedding the `app/` prefix since we are now inside `src/app/`). The one straggler — `./styles/layout.css` which still points at the as-yet-unmoved `src/styles/layout.css` — becomes `../styles/layout.css` temporarily; Task 8 finalizes it. Concrete list of changes:
+- [x] Run: `git mv src/main.ts src/app/main.ts`
+- [x] Open `src/app/main.ts`. Every `./core/…` import becomes `../core/…`. Every `./app/…` import becomes `./` (shedding the `app/` prefix since we are now inside `src/app/`). The one straggler — `./styles/layout.css` which still points at the as-yet-unmoved `src/styles/layout.css` — becomes `../styles/layout.css` temporarily; Task 8 finalizes it. Concrete list of changes:
   - `import './core/styles/reset.css'` → `import '../core/styles/reset.css'`
   - `import './app/styles/tokens.css'` → `import './styles/tokens.css'`
   - `import './styles/layout.css'` → `import '../styles/layout.css'` (temporary path to the file not yet moved; Task 8 finalizes)
@@ -183,12 +183,12 @@ git mv src/lib/dom.ts src/app/lib/dom.ts
   - `from './core/lib/insets'` → `from '../core/lib/insets'`
   - `from './core/lib/sw-register'` → `from '../core/lib/sw-register'`
   - `from './core/lib/version-check'` → `from '../core/lib/version-check'`
-- [ ] Open `index.html` line 30 (the module script tag):
+- [x] Open `index.html` line 30 (the module script tag):
   - `<script type="module" src="/src/main.ts"></script>` → `<script type="module" src="/src/app/main.ts"></script>`
-- [ ] Run: `npx tsc -b` — expect clean.
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Run: `npm run build` — expect clean.
-- [ ] Commit: `git add -A && git commit -m "Move main.ts to src/app/ and point index.html at new path"`
+- [x] Run: `npx tsc -b` — expect clean.
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Run: `npm run build` — expect clean.
+- [x] Commit: `git add -A && git commit -m "Move main.ts to src/app/ and point index.html at new path"`
 
 ---
 

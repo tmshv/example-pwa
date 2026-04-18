@@ -13,6 +13,16 @@ export default defineConfig({
     __SW_VERSION__: JSON.stringify(SW_VERSION),
   },
   plugins: [
+    {
+      name: 'emit-version-json',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'version.json',
+          source: JSON.stringify({ version: SW_VERSION }),
+        })
+      },
+    },
     VitePWA({
       registerType: 'prompt',
       injectRegister: false,

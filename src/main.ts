@@ -12,6 +12,7 @@ import './components/about-view'
 import './components/diagnostics-view'
 import { getDiagnostics } from './components/diagnostics-view'
 import { initSW } from './lib/sw-register'
+import { initVersionCheck } from './lib/version-check'
 
 const shell     = document.querySelector('app-shell')      as HTMLElement
 const content   = document.querySelector('app-content')    as HTMLElement
@@ -44,7 +45,8 @@ shell.addEventListener('check-update', () => {
   sw.checkForUpdate()
 })
 
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') sw.checkForUpdate()
+initVersionCheck(async () => {
+  await sw.checkForUpdate()
+  diag.setSwState('update-available')
+  shell.dispatchEvent(new CustomEvent('sw-state', { detail: 'update-available' }))
 })
-setInterval(() => sw.checkForUpdate(), 60_000)

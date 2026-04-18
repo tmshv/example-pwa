@@ -1,4 +1,5 @@
-import { h, style } from '../lib/dom'
+import { h } from '../lib/dom'
+import './about-view.css'
 
 const REQUIREMENTS: Array<[string, string]> = [
   ['Works on iOS 26+ and Android 16+', 'Open on both platforms; everything below should be observable.'],
@@ -12,29 +13,10 @@ const REQUIREMENTS: Array<[string, string]> = [
   ['Pinned top/bottom bars',           'Scroll the feed - top and bottom bars never move.'],
 ]
 
-const CSS = `
-  :host { display: block; font-family: var(--font); color: var(--fg); }
-  h2 {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
-  }
-  ol { list-style: decimal inside; }
-  li {
-    margin-bottom: 12px;
-    padding: 12px 14px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-  }
-  strong { display: block; margin-bottom: 4px; font-weight: 700; }
-  span   { color: var(--muted); font-size: 12px; line-height: 1.45; }
-`
-
 class AboutView extends HTMLElement {
-  constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
+  connectedCallback() {
+    if (this.childElementCount > 0) return
+
     const list = h('ol')
     for (const [title, how] of REQUIREMENTS) {
       list.append(
@@ -44,8 +26,7 @@ class AboutView extends HTMLElement {
         ),
       )
     }
-    shadow.append(
-      style(CSS),
+    this.append(
       h('h2', {}, '---- REQUIREMENTS ----'),
       list,
     )

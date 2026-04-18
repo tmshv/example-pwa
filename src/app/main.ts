@@ -1,6 +1,7 @@
 import '../core/styles/reset.css'
+import '../core/styles/layout.css'
 import './styles/tokens.css'
-import '../styles/layout.css'
+import './styles/layout.css'
 import '../core/components/app-shell'
 import './components/app-top-bar'
 import './components/app-bottom-bar'

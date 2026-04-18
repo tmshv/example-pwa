@@ -200,7 +200,7 @@ git mv src/lib/dom.ts src/app/lib/dom.ts
 - Delete: `src/styles/layout.css`
 - Modify: `src/app/main.ts` (two import paths for layout.css)
 
-- [ ] Create `src/core/styles/layout.css` with **structural-only** rules. Full contents:
+- [x] Create `src/core/styles/layout.css` with **structural-only** rules. Full contents:
 
 ```css
 html, body {
@@ -216,7 +216,7 @@ html, body {
 }
 ```
 
-- [ ] Create `src/app/styles/layout.css` with **themed + demo layout** rules. Full contents:
+- [x] Create `src/app/styles/layout.css` with **themed + demo layout** rules. Full contents:
 
 ```css
 html, body {
@@ -261,16 +261,16 @@ diagnostics-view {
 }
 ```
 
-- [ ] Delete the old file: `git rm src/styles/layout.css`
-- [ ] In `src/app/main.ts`, replace the single layout.css import with two imports (order matters — core first, then demo override):
+- [x] Delete the old file: `git rm src/styles/layout.css`
+- [x] In `src/app/main.ts`, replace the single layout.css import with two imports (order matters — core first, then demo override):
   - Remove: `import '../styles/layout.css'`
   - Add after reset.css import: `import '../core/styles/layout.css'`
   - Add after tokens.css import: `import './styles/layout.css'`
-- [ ] Run: `npx tsc -b` — expect clean.
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Run: `npm run build` — expect clean.
-- [ ] Run: `npm run dev` in another terminal. Open http://localhost:5173 (or whatever port Vite prints). Visually verify: feed is visible, top-bar is at top with title + status chip, bottom-bar with three tabs is at the bottom. Navigate to Diag and About tabs. Kill dev server.
-- [ ] Commit: `git add -A && git commit -m "Split layout.css into core (structural) and demo (themed) halves"`
+- [x] Run: `npx tsc -b` — expect clean.
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Run: `npm run build` — expect clean.
+- [x] manual test (skipped - not automatable): `npm run dev` visual verification
+- [x] Commit: `git add -A && git commit -m "Split layout.css into core (structural) and demo (themed) halves"`
 
 ---
 

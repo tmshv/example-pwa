@@ -279,10 +279,10 @@ diagnostics-view {
 **Files:**
 - Delete: `src/lib/`, `src/components/`, `src/styles/` (if empty)
 
-- [ ] Run: `ls src/lib src/components src/styles 2>&1` — each should show empty output or "No such file". If any file remains, STOP; Tasks 2–8 did not fully move their targets. Do not proceed until all three dirs are empty.
-- [ ] Run: `rmdir src/lib src/components src/styles`
-- [ ] Run: `git status` — expect no changes (empty dirs aren't tracked by git, so rmdir doesn't show up; this step only tidies the filesystem).
-- [ ] No commit needed.
+- [x] Run: `ls src/lib src/components src/styles 2>&1` — each should show empty output or "No such file". If any file remains, STOP; Tasks 2–8 did not fully move their targets. Do not proceed until all three dirs are empty. NOTE: src/styles was already removed; src/lib and src/components were empty.
+- [x] Run: `rmdir src/lib src/components src/styles` — ran `rmdir src/lib src/components` (src/styles already gone).
+- [x] Run: `git status` — expect no changes (empty dirs aren't tracked by git, so rmdir doesn't show up; this step only tidies the filesystem).
+- [x] No commit needed.
 
 ---
 

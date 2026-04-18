@@ -1,5 +1,5 @@
 import './core/styles/reset.css'
-import './styles/tokens.css'
+import './app/styles/tokens.css'
 import './styles/layout.css'
 import './core/components/app-shell'
 import './app/components/app-top-bar'

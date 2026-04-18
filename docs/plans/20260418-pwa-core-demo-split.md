@@ -149,12 +149,12 @@ git mv src/lib/dom.ts src/app/lib/dom.ts
 - Move: `src/styles/tokens.css` → `src/app/styles/tokens.css`
 - Modify: `src/main.ts` (one import path)
 
-- [ ] Run: `git mv src/styles/tokens.css src/app/styles/tokens.css`
-- [ ] Edit `src/main.ts`:
+- [x] Run: `git mv src/styles/tokens.css src/app/styles/tokens.css`
+- [x] Edit `src/main.ts`:
   - `import './styles/tokens.css'` → `import './app/styles/tokens.css'`
-- [ ] Run: `npx tsc -b` — expect clean.
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Commit: `git add -A && git commit -m "Move tokens.css to src/app/styles/"`
+- [x] Run: `npx tsc -b` — expect clean.
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Commit: `git add -A && git commit -m "Move tokens.css to src/app/styles/"`
 
 ---
 

@@ -58,16 +58,16 @@
 - Move: `src/components/app-shell.css` → `src/core/components/app-shell.css`
 - Modify: `src/main.ts` (import paths for `reset.css` and `app-shell`)
 
-- [ ] Run: `git mv src/styles/reset.css src/core/styles/reset.css`
-- [ ] Run: `git mv src/components/app-shell.ts src/core/components/app-shell.ts`
-- [ ] Run: `git mv src/components/app-shell.css src/core/components/app-shell.css`
-- [ ] Verify `app-shell.ts`'s internal import `import './app-shell.css'` still resolves (same folder — should need no change). Read `src/core/components/app-shell.ts` line 1 to confirm.
-- [ ] Open `src/main.ts` and update two import paths:
+- [x] Run: `git mv src/styles/reset.css src/core/styles/reset.css`
+- [x] Run: `git mv src/components/app-shell.ts src/core/components/app-shell.ts`
+- [x] Run: `git mv src/components/app-shell.css src/core/components/app-shell.css`
+- [x] Verify `app-shell.ts`'s internal import `import './app-shell.css'` still resolves (same folder — should need no change). Read `src/core/components/app-shell.ts` line 1 to confirm.
+- [x] Open `src/main.ts` and update two import paths:
   - `import './styles/reset.css'` → `import './core/styles/reset.css'`
   - `import './components/app-shell'` → `import './core/components/app-shell'`
-- [ ] Run: `npx tsc -b` — expect clean.
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Commit: `git add -A && git commit -m "Move reset.css and app-shell to src/core/"`
+- [x] Run: `npx tsc -b` — expect clean.
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Commit: `git add -A && git commit -m "Move reset.css and app-shell to src/core/"`
 
 ---
 

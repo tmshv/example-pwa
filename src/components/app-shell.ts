@@ -1,3 +1,5 @@
+import './app-shell.css'
+
 export type Tab = 'feed' | 'diagnostics' | 'about'
 
 class AppShell extends HTMLElement {

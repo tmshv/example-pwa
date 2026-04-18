@@ -14,9 +14,3 @@ export function h(
   }
   return el
 }
-
-export function style(css: string): HTMLStyleElement {
-  const el = document.createElement('style')
-  el.textContent = css
-  return el
-}

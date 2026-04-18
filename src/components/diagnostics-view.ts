@@ -1,5 +1,6 @@
-import { h, style } from '../lib/dom'
+import { h } from '../lib/dom'
 import { Diagnostics, type DiagnosticsSnapshot } from '../lib/diagnostics'
+import './diagnostics-view.css'
 
 let sharedDiagnostics: Diagnostics | null = null
 export function getDiagnostics(): Diagnostics {
@@ -64,39 +65,12 @@ function build(snap: DiagnosticsSnapshot): DocumentFragment {
   return frag
 }
 
-const CSS = `
-  :host { display: block; font-family: var(--font); color: var(--fg); }
-  section {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 12px 14px;
-    margin-bottom: 12px;
-  }
-  h3 {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
-  }
-  .row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
-  .row.wrap { flex-direction: column; gap: 4px; }
-  .k { color: var(--muted); }
-  .v { color: var(--fg); font-variant-numeric: tabular-nums; }
-  .v.small { font-size: 11px; word-break: break-all; }
-`
-
 class DiagnosticsView extends HTMLElement {
-  private container: HTMLElement
+  private container = h('div')
   private unsubscribe?: () => void
 
-  constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    this.container = h('div')
-    shadow.append(style(CSS), this.container)
-  }
-
   connectedCallback() {
+    if (this.childElementCount === 0) this.append(this.container)
     const diag = getDiagnostics()
     this.unsubscribe = diag.subscribe((snap) => {
       this.container.replaceChildren(build(snap))

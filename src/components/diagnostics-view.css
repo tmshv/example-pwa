@@ -1,0 +1,29 @@
+diagnostics-view section {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+diagnostics-view h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+diagnostics-view .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+diagnostics-view .row.wrap {
+  flex-direction: column;
+  gap: 4px;
+}
+
+diagnostics-view .k { color: var(--muted); }
+diagnostics-view .v { color: var(--fg); font-variant-numeric: tabular-nums; }
+diagnostics-view .v.small { font-size: 11px; word-break: break-all; }

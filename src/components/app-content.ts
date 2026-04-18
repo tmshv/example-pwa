@@ -7,8 +7,8 @@ const CSS = `
     overflow-y: auto;
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
-    padding-top: calc(env(safe-area-inset-top) + 52px);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 52px);
+    padding-top: calc(env(safe-area-inset-top) + 80px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
   }
 `
 

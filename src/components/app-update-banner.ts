@@ -27,7 +27,8 @@ const CSS = `
     pointer-events: none;
   }
   .label, .actions { position: relative; z-index: 1; }
-  .actions { display: flex; gap: 8px; }
+  .label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .actions { display: flex; gap: 8px; flex-shrink: 0; }
   button {
     padding: 4px 10px;
     border: 1px solid var(--border);
@@ -37,6 +38,7 @@ const CSS = `
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    white-space: nowrap;
   }
   button.primary { background: var(--pastel-blush); }
 `

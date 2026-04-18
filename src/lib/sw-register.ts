@@ -18,7 +18,21 @@ export function initSW(onState: (s: SwState) => void): SwControl {
   })
 
   return {
-    reload: () => updateSW(true),
+    async reload() {
+      if (registration?.waiting) {
+        const controllerChanged = new Promise<void>((resolve) => {
+          navigator.serviceWorker.addEventListener(
+            'controllerchange',
+            () => resolve(),
+            { once: true },
+          )
+        })
+        await updateSW(false)
+        await controllerChanged
+      }
+      await new Promise((r) => setTimeout(r, 150))
+      window.location.replace(window.location.href)
+    },
     async checkForUpdate() {
       if (!registration) return false
       try {

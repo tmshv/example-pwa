@@ -21,6 +21,24 @@
             .reload-overlay { position: fixed; inset: 0; z-index: 9999; background: #ffffff; }
             .reload-overlay[hidden] { display: none; }
         </style>
+        <script>
+            (function () {
+                try {
+                    var raw = localStorage.getItem('insets-v1')
+                    if (!raw) return
+                    var cache = JSON.parse(raw)
+                    var o = window.matchMedia('(orientation: portrait)').matches ? 'p' : 'l'
+                    var v = cache && cache[o]
+                    if (!v) return
+                    var s = document.documentElement.style
+                    if (v.t != null) s.setProperty('--sai-top',    v.t + 'px')
+                    if (v.r != null) s.setProperty('--sai-right',  v.r + 'px')
+                    if (v.b != null) s.setProperty('--sai-bottom', v.b + 'px')
+                    if (v.l != null) s.setProperty('--sai-left',   v.l + 'px')
+                    if (v.h != null) s.setProperty('--app-h',      v.h + 'px')
+                } catch (e) {}
+            })()
+        </script>
     </head>
     <body>
         <app-shell>

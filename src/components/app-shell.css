@@ -1,9 +1,9 @@
 app-shell {
   display: block;
   position: relative;
-  height: 100dvh;
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  height: var(--app-h, 100dvh);
+  padding-left: var(--sai-left, env(safe-area-inset-left, 0px));
+  padding-right: var(--sai-right, env(safe-area-inset-right, 0px));
 }
 
 app-shell::before,
@@ -18,12 +18,12 @@ app-shell::after {
 
 app-shell::before {
   top: 0;
-  height: calc(env(safe-area-inset-top) + 10px + 64px);
+  height: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 10px + 64px);
   background: linear-gradient(to bottom, var(--bg) 10px, transparent);
 }
 
 app-shell::after {
   bottom: 0;
-  height: calc(env(safe-area-inset-bottom) + 64px);
+  height: calc(var(--sai-bottom, env(safe-area-inset-bottom, 0px)) + 64px);
   background: linear-gradient(to top, var(--bg), transparent);
 }

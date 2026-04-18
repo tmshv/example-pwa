@@ -4,6 +4,6 @@ app-content {
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  padding-top: calc(env(safe-area-inset-top) + 80px);
-  padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
+  padding-top: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 80px);
+  padding-bottom: calc(var(--sai-bottom, env(safe-area-inset-bottom, 0px)) + 80px);
 }

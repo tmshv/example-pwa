@@ -1,5 +1,5 @@
 html, body {
-  height: 100dvh;
+  height: var(--app-h, 100dvh);
   margin: 0;
   overflow: hidden;
   overscroll-behavior: none;
@@ -28,17 +28,17 @@ app-update-banner {
 }
 
 app-top-bar {
-  top: calc(env(safe-area-inset-top) + 8px);
+  top: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 8px);
   padding: 10px 16px;
 }
 
 app-update-banner {
-  top: calc(env(safe-area-inset-top) + 8px + 44px);
+  top: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 8px + 44px);
   padding: 8px 14px;
 }
 
 app-bottom-bar {
-  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  bottom: calc(var(--sai-bottom, env(safe-area-inset-bottom, 0px)) + 8px);
 }
 
 feed-view,

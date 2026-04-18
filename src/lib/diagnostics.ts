@@ -1,4 +1,4 @@
-import type { SwState } from './sw-register'
+import type { SwState } from '../core/lib/sw-register'
 
 export interface Insets {
   top: number

@@ -11,9 +11,9 @@ import './components/feed-view'
 import './components/about-view'
 import './components/diagnostics-view'
 import { getDiagnostics } from './components/diagnostics-view'
-import { initInsets } from './lib/insets'
-import { initSW } from './lib/sw-register'
-import { initVersionCheck } from './lib/version-check'
+import { initInsets } from './core/lib/insets'
+import { initSW } from './core/lib/sw-register'
+import { initVersionCheck } from './core/lib/version-check'
 
 initInsets()
 

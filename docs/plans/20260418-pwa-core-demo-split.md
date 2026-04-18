@@ -37,16 +37,16 @@
 - Move: `src/lib/version-check.ts` → `src/core/lib/version-check.ts`
 - Modify: `src/main.ts` (import paths for the three modules above)
 
-- [ ] Run: `git mv src/lib/insets.ts src/core/lib/insets.ts`
-- [ ] Run: `git mv src/lib/sw-register.ts src/core/lib/sw-register.ts`
-- [ ] Run: `git mv src/lib/version-check.ts src/core/lib/version-check.ts`
-- [ ] Open `src/main.ts` and update three import paths:
+- [x] Run: `git mv src/lib/insets.ts src/core/lib/insets.ts`
+- [x] Run: `git mv src/lib/sw-register.ts src/core/lib/sw-register.ts`
+- [x] Run: `git mv src/lib/version-check.ts src/core/lib/version-check.ts`
+- [x] Open `src/main.ts` and update three import paths:
   - `from './lib/insets'` → `from './core/lib/insets'`
   - `from './lib/sw-register'` → `from './core/lib/sw-register'`
   - `from './lib/version-check'` → `from './core/lib/version-check'`
-- [ ] Run: `npx tsc -b` — expect clean.
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Commit: `git add -A && git commit -m "Move insets, sw-register, version-check to src/core/lib/"`
+- [x] Run: `npx tsc -b` — expect clean.
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Commit: `git add -A && git commit -m "Move insets, sw-register, version-check to src/core/lib/"`
 
 ---
 

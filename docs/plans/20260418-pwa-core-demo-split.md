@@ -291,7 +291,7 @@ diagnostics-view {
 **Files:**
 - Create: `tests/core/insets.test.ts`
 
-- [ ] Write `tests/core/insets.test.ts` with three assertions. Full contents:
+- [x] Write `tests/core/insets.test.ts` with three assertions. Full contents:
 
 ```ts
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
@@ -371,9 +371,9 @@ describe('initInsets', () => {
 })
 ```
 
-- [ ] Run: `npm test` — expect 8/8 passing (5 existing + 3 new).
-- [ ] If any new test fails, read the failure carefully before editing `insets.ts` — the tests assert current documented behavior. Most likely cause of failure is a difference in jsdom's handling of `getComputedStyle` for `env()`; in that case the first test's regex may need relaxing to `/^-?\d+(\.\d+)?px$/`. Any tighter fix (e.g., changing `insets.ts`) needs human review — do NOT silently loosen assertions below "values are set and are valid lengths".
-- [ ] Commit: `git add -A && git commit -m "Add regression test for initInsets behavior"`
+- [x] Run: `npm test` — expect 8/8 passing (5 existing + 3 new).
+- [x] If any new test fails, read the failure carefully before editing `insets.ts` — the tests assert current documented behavior. Most likely cause of failure is a difference in jsdom's handling of `getComputedStyle` for `env()`; in that case the first test's regex may need relaxing to `/^-?\d+(\.\d+)?px$/`. Any tighter fix (e.g., changing `insets.ts`) needs human review — do NOT silently loosen assertions below "values are set and are valid lengths". NOTE: jsdom does not provide `window.matchMedia`; added a default matchMedia stub in beforeEach (no insets.ts change).
+- [x] Commit: `git add -A && git commit -m "Add regression test for initInsets behavior"`
 
 ---
 

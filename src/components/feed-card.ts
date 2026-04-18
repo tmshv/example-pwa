@@ -9,6 +9,7 @@ const PATTERN_FILES: Record<string, string[]> = {
   plus:    ['pattern-plus.svg'],
   both:    ['pattern-slashes.svg', 'pattern-plus.svg'],
   cross:   ['pattern-cross.svg'],
+  crosses: ['pattern-crosses.svg'],
   dots:    ['pattern-dots.svg'],
 }
 

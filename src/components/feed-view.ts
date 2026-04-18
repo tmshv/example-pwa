@@ -2,7 +2,7 @@ import { h } from '../lib/dom'
 import type { PastelToken } from '../lib/card-fill'
 
 type Border = 'solid' | 'dashed'
-type Pattern = 'slashes' | 'plus' | 'both' | 'cross' | 'dots'
+type Pattern = 'slashes' | 'plus' | 'both' | 'cross' | 'crosses' | 'dots'
 
 type Sample = {
   title: string
@@ -31,6 +31,7 @@ const SAMPLES: Sample[] = [
   { title: 'Berry',             body: 'Magenta drifting into plum.',                     height: 210 },
   { title: 'Overscroll test',   body: 'Pull past the top edge. Pull past the bottom. Nothing stretches, nothing bounces, nothing rubber-bands back into place.', height: 160, pattern: 'slashes' },
   { title: 'Grid lines',        body: 'A crosshatch of tiny pluses laid out on a clean white surface. Useful for seeing how text sits on top of a busy pattern when the type needs to stay readable.', height: 160, pattern: 'plus' },
+  { title: 'Diagonal weave',    body: 'The same small grid turned forty-five degrees: tiny crosses leaning into each other, warm butter folding into soft blush across the tile.', height: 180, pattern: 'crosses', from: 'butter', to: 'blush' },
   { title: 'Release candidate', body: 'Tag, QA pass, then ship.',                        height: 150 },
   { title: 'Lavender',          body: 'Muted violet into cool periwinkle.',              height: 200 },
   { title: 'Graphite',          body: 'Slate gradient with a soft inner glow.',          height: 180 },

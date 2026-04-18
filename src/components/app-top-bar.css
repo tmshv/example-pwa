@@ -1,0 +1,39 @@
+app-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+          backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border);
+  font-family: var(--font);
+  color: var(--fg);
+}
+
+app-top-bar h1 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+app-top-bar button.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--fg);
+}
+
+app-top-bar .swatch {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--border);
+  background: var(--ok);
+}
+
+app-top-bar[status="update"]  .swatch { background: var(--warn); }
+app-top-bar[status="offline"] .swatch { background: var(--off); }

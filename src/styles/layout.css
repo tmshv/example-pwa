@@ -49,11 +49,3 @@ diagnostics-view {
   color: var(--fg);
 }
 
-.reload-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--bg);
-}
-
-.reload-overlay[hidden] { display: none; }

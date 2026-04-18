@@ -17,6 +17,10 @@
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-180.png" />
+        <style>
+            .reload-overlay { position: fixed; inset: 0; z-index: 9999; background: #ffffff; }
+            .reload-overlay[hidden] { display: none; }
+        </style>
     </head>
     <body>
         <app-shell>
@@ -25,7 +29,7 @@
             <app-content></app-content>
             <app-bottom-bar></app-bottom-bar>
         </app-shell>
-        <div class="reload-overlay" hidden></div>
+        <div class="reload-overlay"></div>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>

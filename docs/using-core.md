@@ -9,7 +9,7 @@ Minimum set from this repo:
 - `src/core/` — the entire directory
   - `lib/insets.ts`, `lib/sw-register.ts`, `lib/version-check.ts`
   - `styles/reset.css`, `styles/layout.css` (structural only)
-  - `components/app-shell.ts`, `components/app-shell.css`
+  - `components/app-shell.ts`, `components/app-shell.css` (inert container — sets `--app-h` height, side safe-area padding, `position: relative`)
 - `src/global.d.ts` — declares `__SW_VERSION__` (and the `virtual:pwa-register` module) so core code type-checks
 - `index.html` — including the inline insets-cache `<script>` in `<head>`. The `.reload-overlay` markup and its style block are demo-only; drop them unless you also port the overlay hide logic from `src/app/main.ts`.
 - `vite.config.ts` — Vite + `vite-plugin-pwa` setup, including the `emit-version-json` plugin that `version-check.ts` polls, and the `define: { __SW_VERSION__: … }` injection that `version-check.ts` reads as its current version.
@@ -20,7 +20,7 @@ Do NOT copy `src/app/` or `tests/` — those are demo/project code.
 
 ## Wiring a new `src/app/main.ts`
 
-Your new entry file lives at `src/app/main.ts` and `index.html` points at it via `<script type="module" src="/src/app/main.ts"></script>`. Minimal skeleton:
+Your new entry file lives at `src/app/main.ts` and `index.html` points at it via `<script type="module" src="/src/app/main.ts"></script>`. `<app-shell>` is an inert container — it does not route tabs, manage an update banner, or listen for events. Your demo owns all of that. Minimal skeleton:
 
 ```ts
 import '../core/styles/reset.css'
@@ -37,34 +37,23 @@ import { initVersionCheck } from '../core/lib/version-check'
 
 initInsets()
 
-const shell = document.querySelector('app-shell') as HTMLElement
-
 const sw = initSW((state) => {
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
+  if (state === 'update-available') {
+    // demo UI: show a banner, toast, auto-reload, etc.
+  }
 })
 
-shell.addEventListener('reload-app', () => {
-  sw.reload().catch((err) => console.error('SW reload failed:', err))
-})
-shell.addEventListener('check-update', () => { sw.checkForUpdate() })
+// When your UI asks to reload:
+// sw.reload().catch((err) => console.error('SW reload failed:', err))
 
 initVersionCheck(async () => {
   await sw.checkForUpdate()
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: 'update-available' }))
 })
 ```
 
 `initInsets()` must be the first call — it populates the CSS custom properties the layout binds to.
 
-`<app-shell>` hardcodes child-element selectors in `src/core/components/app-shell.ts`:
-- `app-update-banner` — shown/hidden on `sw-state` / `dismiss-update` events
-- `app-content` — receives the active view via `replaceChildren`
-- `app-bottom-bar` — receives the `active-tab` attribute
-- `<tab>-view` — created by `document.createElement(\`${tab}-view\`)` where `tab` is `'feed' | 'diagnostics' | 'about'` (see the `Tab` union at the top of `app-shell.ts`)
-
-If you want different element names or a different tab set, fork `app-shell.ts` and edit those selectors and the `Tab` type. Your `index.html` and demo components must register the same names.
-
-Optional CSS token read by core: `app-shell.css` paints a top/bottom fade using `var(--bg, transparent)`. Define `--bg` in your demo tokens to show the fade; omit it and the fade is invisible (no layout impact).
+Core does not impose child-element names, a tab set, or any update-UI contract. Pick whatever element names and routing shape fit your project and wire the behavior directly in your entry file. The demo in `src/app/` is a reference, not a required surface.
 
 ## Invariants you must preserve
 

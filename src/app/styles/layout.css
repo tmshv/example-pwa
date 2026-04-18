@@ -38,3 +38,25 @@ diagnostics-view {
   font-family: var(--font);
   color: var(--fg);
 }
+
+app-shell::before,
+app-shell::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+app-shell::before {
+  top: 0;
+  height: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 10px + 64px);
+  background: linear-gradient(to bottom, var(--bg, transparent) 10px, transparent);
+}
+
+app-shell::after {
+  bottom: 0;
+  height: calc(var(--sai-bottom, env(safe-area-inset-bottom, 0px)) + 64px);
+  background: linear-gradient(to top, var(--bg, transparent), transparent);
+}

@@ -16,15 +16,31 @@ import { initInsets } from '../core/lib/insets'
 import { initSW } from '../core/lib/sw-register'
 import { initVersionCheck } from '../core/lib/version-check'
 
+type Tab = 'feed' | 'diagnostics' | 'about'
+
 initInsets()
 
-const shell     = document.querySelector('app-shell')      as HTMLElement
-const content   = document.querySelector('app-content')    as HTMLElement
-const topBar    = document.querySelector('app-top-bar')    as HTMLElement
-const bottomBar = document.querySelector('app-bottom-bar') as HTMLElement
+const shell     = document.querySelector('app-shell')         as HTMLElement
+const content   = document.querySelector('app-content')       as HTMLElement
+const topBar    = document.querySelector('app-top-bar')       as HTMLElement
+const bottomBar = document.querySelector('app-bottom-bar')    as HTMLElement
+const banner    = document.querySelector('app-update-banner') as HTMLElement
 
+let currentTab: Tab = 'feed'
 content.replaceChildren(document.createElement('feed-view'))
-bottomBar.setAttribute('active-tab', 'feed')
+bottomBar.setAttribute('active-tab', currentTab)
+
+shell.addEventListener('tab-change', (e) => {
+  const tab = (e as CustomEvent<Tab>).detail
+  if (currentTab === tab) return
+  currentTab = tab
+  content.replaceChildren(document.createElement(`${tab}-view`))
+  bottomBar.setAttribute('active-tab', tab)
+})
+
+shell.addEventListener('dismiss-update', () => {
+  banner.setAttribute('hidden', '')
+})
 
 const diag = getDiagnostics()
 diag.setContent(content)
@@ -40,7 +56,9 @@ diag.subscribe((snap) => {
 
 const sw = initSW((state) => {
   diag.setSwState(state)
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
+  if (state === 'update-available') {
+    banner.removeAttribute('hidden')
+  }
 })
 const reloadOverlay = document.querySelector('.reload-overlay') as HTMLElement
 const hideOverlay = () => { reloadOverlay.hidden = true }
@@ -63,5 +81,5 @@ shell.addEventListener('check-update', () => {
 initVersionCheck(async () => {
   await sw.checkForUpdate()
   diag.setSwState('update-available')
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: 'update-available' }))
+  banner.removeAttribute('hidden')
 })

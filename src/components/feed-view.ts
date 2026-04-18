@@ -2,7 +2,7 @@ import { h } from '../lib/dom'
 import type { PastelToken } from '../lib/card-fill'
 
 type Border = 'solid' | 'dashed'
-type Pattern = 'slashes' | 'plus' | 'both' | 'cross'
+type Pattern = 'slashes' | 'plus' | 'both' | 'cross' | 'dots'
 
 type Sample = {
   title: string
@@ -19,6 +19,7 @@ const SAMPLES: Sample[] = [
   { title: 'Good morning',      body: 'Here is what is happening today.',                height: 140 },
   { title: 'Sunrise over the quiet harbor', body: 'Warm peach slides into a soft coral and settles on the water long before anyone is awake to notice. The gulls know first, and then the boats, and then us.', height: 180, pattern: 'slashes', from: 'peach', to: 'butter' },
   { title: 'Trending now',      body: 'Three stories worth your attention.',             height: 150 },
+  { title: 'Twilight notebook', body: 'A small field of dots in hexagonal order, resting on a pale sky fading into lilac. Quiet, grid-adjacent, hand-drawn in spirit.', height: 180, pattern: 'dots', from: 'sky', to: 'lilac' },
   { title: 'Deep ocean',        body: 'Cool indigo descending into midnight.',           height: 220, border: 'dashed' },
   { title: 'Weather',           body: 'Partly cloudy all afternoon, holding at 18\u00B0C with a light breeze from the west. Rain is possible after sunset but unlikely to amount to much.', height: 140, pattern: 'cross' },
   { title: 'Citrus',            body: 'Bright lemon folding into tangerine.',            height: 170 },

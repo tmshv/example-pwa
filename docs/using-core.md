@@ -10,8 +10,9 @@ Minimum set from this repo:
   - `lib/insets.ts`, `lib/sw-register.ts`, `lib/version-check.ts`
   - `styles/reset.css`, `styles/layout.css` (structural only)
   - `components/app-shell.ts`, `components/app-shell.css`
-- `index.html` — including the inline insets-cache `<script>` in `<head>`
-- `vite.config.ts` — Vite + `vite-plugin-pwa` setup, including the `emit-version-json` plugin that `version-check.ts` polls
+- `src/global.d.ts` — declares `__SW_VERSION__` (and the `virtual:pwa-register` module) so core code type-checks
+- `index.html` — including the inline insets-cache `<script>` in `<head>`. The `.reload-overlay` markup and its style block are demo-only; drop them unless you also port the overlay hide logic from `src/app/main.ts`.
+- `vite.config.ts` — Vite + `vite-plugin-pwa` setup, including the `emit-version-json` plugin that `version-check.ts` polls, and the `define: { __SW_VERSION__: … }` injection that `version-check.ts` reads as its current version.
 - `public/` — supply your own icons (`icon.svg`, `icon-192.png`, `icon-512.png`, `icon-180.png`). Shape and sizes must match what `vite.config.ts` references in the manifest.
 - `docs/pwa-layout.md` — keep as-is; it documents the layout invariants the core depends on
 

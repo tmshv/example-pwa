@@ -3,14 +3,27 @@ feed-card {
   position: relative;
   border: 1px solid var(--border);
   background: var(--grad-bg, var(--bg));
-  padding: 14px 16px;
+  padding: 16px;
   margin-bottom: 12px;
   font-family: var(--font);
   color: var(--fg);
   overflow: hidden;
 }
 
-feed-card[data-border="dashed"] { border-style: dashed; }
+feed-card[data-border="dashed"] { border-color: transparent; }
+
+feed-card[data-border="dashed"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    repeating-linear-gradient(90deg, var(--border) 0 8px, transparent 8px 14px) top    / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--border) 0 8px, transparent 8px 14px) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(0deg,  var(--border) 0 8px, transparent 8px 14px) left   / 1px 100% no-repeat,
+    repeating-linear-gradient(0deg,  var(--border) 0 8px, transparent 8px 14px) right  / 1px 100% no-repeat;
+}
 
 feed-card > .pattern {
   position: absolute;
@@ -24,17 +37,29 @@ feed-card > .pattern {
 feed-card > .content {
   position: relative;
   z-index: 1;
+  user-select: text;
+  -webkit-user-select: text;
+  -webkit-touch-callout: default;
 }
 
 feed-card h2 {
   font-size: 14px;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   letter-spacing: 0.02em;
+  line-height: 16px;
 }
 
 feed-card p {
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 16px;
   color: var(--fg);
+}
+
+feed-card h2 > span,
+feed-card p > span {
+  background: var(--bg);
+  padding: 1px 6px;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
 }

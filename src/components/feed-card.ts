@@ -16,8 +16,10 @@ export class FeedCard extends HTMLElement {
     'title', 'body', 'height',
     'data-from', 'data-to', 'data-angle', 'data-pattern',
   ]
-  private titleEl = h('h2')
-  private bodyEl  = h('p')
+  private titleTextEl = h('span')
+  private bodyTextEl  = h('span')
+  private titleEl = h('h2', {}, this.titleTextEl)
+  private bodyEl  = h('p',  {}, this.bodyTextEl)
   private contentEl = h('div', { class: 'content' }, this.titleEl, this.bodyEl)
 
   connectedCallback() {
@@ -25,16 +27,16 @@ export class FeedCard extends HTMLElement {
       this.renderPatterns()
       this.append(this.contentEl)
     }
-    this.titleEl.textContent = this.getAttribute('title') ?? ''
-    this.bodyEl.textContent  = this.getAttribute('body')  ?? ''
+    this.titleTextEl.textContent = this.getAttribute('title') ?? ''
+    this.bodyTextEl.textContent  = this.getAttribute('body')  ?? ''
     const height = this.getAttribute('height')
     if (height) this.style.minHeight = `${height}px`
     this.syncFill()
   }
 
   attributeChangedCallback(name: string) {
-    if (name === 'title')  this.titleEl.textContent = this.getAttribute('title') ?? ''
-    if (name === 'body')   this.bodyEl.textContent  = this.getAttribute('body')  ?? ''
+    if (name === 'title')  this.titleTextEl.textContent = this.getAttribute('title') ?? ''
+    if (name === 'body')   this.bodyTextEl.textContent  = this.getAttribute('body')  ?? ''
     if (name === 'height') {
       const value = this.getAttribute('height')
       this.style.minHeight = value ? `${value}px` : ''

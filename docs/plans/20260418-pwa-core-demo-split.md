@@ -23,9 +23,9 @@
 - Create: `src/app/lib/`, `src/app/styles/`, `src/app/components/`
 - Create: `tests/core/`
 
-- [ ] Run: `mkdir -p src/core/lib src/core/styles src/core/components src/app/lib src/app/styles src/app/components tests/core`
-- [ ] Verify dirs exist: `ls -d src/core src/core/lib src/core/styles src/core/components src/app src/app/lib src/app/styles src/app/components tests/core` — all must print.
-- [ ] No commit yet. These are empty dirs; git will not track them. They will be populated by the next tasks.
+- [x] Run: `mkdir -p src/core/lib src/core/styles src/core/components src/app/lib src/app/styles src/app/components tests/core`
+- [x] Verify dirs exist: `ls -d src/core src/core/lib src/core/styles src/core/components src/app src/app/lib src/app/styles src/app/components tests/core` — all must print.
+- [x] No commit yet. These are empty dirs; git will not track them. They will be populated by the next tasks.
 
 ---
 

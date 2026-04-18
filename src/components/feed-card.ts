@@ -1,5 +1,5 @@
 import { h, style } from '../lib/dom'
-import { applyFill, type CardFill, type GradientType, type PastelToken } from '../lib/card-fill'
+import { applyFill, type Fill, type PastelToken } from '../lib/card-fill'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -52,7 +52,7 @@ const CSS = `
 `
 
 export class FeedCard extends HTMLElement {
-  static observedAttributes = ['title', 'body', 'height', 'data-gradient', 'data-from', 'data-to']
+  static observedAttributes = ['title', 'body', 'height', 'data-from', 'data-to', 'data-angle']
   private titleEl: HTMLElement
   private bodyEl: HTMLElement
 
@@ -83,16 +83,16 @@ export class FeedCard extends HTMLElement {
   }
 
   private syncFill() {
-    const gradient = this.dataset.gradient as GradientType | undefined
     const from = this.dataset.from as PastelToken | undefined
     const to = this.dataset.to as PastelToken | undefined
-    if (!gradient || !from || !to) {
+    if (!from || !to) {
       this.style.removeProperty('--grad-from')
       this.style.removeProperty('--grad-to')
       this.style.removeProperty('--grad-bg')
       return
     }
-    const fill: CardFill = { gradient, from, to }
+    const angle = this.dataset.angle ? Number(this.dataset.angle) : undefined
+    const fill: Fill = { from, to, angle }
     applyFill(this, fill)
   }
 }

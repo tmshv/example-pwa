@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { readInsetsFromProbe, computeColorScheme } from '../src/lib/diagnostics'
+import { readInsetsFromProbe, computeColorScheme } from '../src/app/lib/diagnostics'
 
 describe('readInsetsFromProbe', () => {
   it('parses pixel paddings into integers', () => {

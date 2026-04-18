@@ -127,19 +127,19 @@ git mv src/components/diagnostics-view.css src/app/components/
 - Modify: imports in `src/app/components/*.ts` that reference `../lib/...`
 - Modify: `tests/card-fill.test.ts`, `tests/diagnostics.test.ts` import paths
 
-- [ ] Run:
+- [x] Run:
 ```
 git mv src/lib/card-fill.ts src/app/lib/card-fill.ts
 git mv src/lib/diagnostics.ts src/app/lib/diagnostics.ts
 git mv src/lib/dom.ts src/app/lib/dom.ts
 ```
-- [ ] Confirm component files inside `src/app/components/` still resolve — their imports use `../lib/...` which after the move still resolves correctly because both moved from `src/…/` to `src/app/…/` preserving the relative structure. Run `npx tsc -b` to verify; expect clean.
-- [ ] Edit `tests/card-fill.test.ts` line 2:
+- [x] Confirm component files inside `src/app/components/` still resolve — their imports use `../lib/...` which after the move still resolves correctly because both moved from `src/…/` to `src/app/…/` preserving the relative structure. Run `npx tsc -b` to verify; expect clean. NOTE: `src/app/lib/diagnostics.ts` also imports `../core/lib/sw-register` which required an extra fix to `../../core/lib/sw-register` since the file moved one directory deeper.
+- [x] Edit `tests/card-fill.test.ts` line 2:
   - `from '../src/lib/card-fill'` → `from '../src/app/lib/card-fill'`
-- [ ] Edit `tests/diagnostics.test.ts` line 2:
+- [x] Edit `tests/diagnostics.test.ts` line 2:
   - `from '../src/lib/diagnostics'` → `from '../src/app/lib/diagnostics'`
-- [ ] Run: `npm test` — expect 5/5 passing.
-- [ ] Commit: `git add -A && git commit -m "Move demo lib modules to src/app/lib/"`
+- [x] Run: `npm test` — expect 5/5 passing.
+- [x] Commit: `git add -A && git commit -m "Move demo lib modules to src/app/lib/"`
 
 ---
 

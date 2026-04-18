@@ -395,6 +395,6 @@ describe('initInsets', () => {
 **Files:**
 - Create: `docs/using-core.md`
 
-- [ ] Only do this task if you want to make the template's reuse story explicit. Otherwise skip.
-- [ ] Write a short doc covering: the minimum set of files to copy when bootstrapping a new PWA (`src/core/`, `index.html`, `vite.config.ts`, `public/` placeholders, `docs/pwa-layout.md`), the wiring required in a new `src/app/main.ts`, and the invariant about `var(--sai-*)` / `var(--app-h)` usage. Keep under 100 lines.
-- [ ] Commit: `git add docs/using-core.md && git commit -m "Add core-reuse quickstart doc"`
+- [x] Only do this task if you want to make the template's reuse story explicit. Otherwise skip.
+- [x] Write a short doc covering: the minimum set of files to copy when bootstrapping a new PWA (`src/core/`, `index.html`, `vite.config.ts`, `public/` placeholders, `docs/pwa-layout.md`), the wiring required in a new `src/app/main.ts`, and the invariant about `var(--sai-*)` / `var(--app-h)` usage. Keep under 100 lines. (Wrote 67-line `docs/using-core.md`.)
+- [x] Commit: `git add docs/using-core.md && git commit -m "Add core-reuse quickstart doc"`

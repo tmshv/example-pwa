@@ -37,6 +37,7 @@ const SAMPLES: Sample[] = [
   { title: 'Graphite',          body: 'Slate gradient with a soft inner glow.',          height: 180 },
   { title: 'Diagonal weave',    body: 'Test. Test. Test', height: 100, pattern: 'slashes', from: 'lilac', to: 'butter' },
   { title: 'Weather',           body: '[ weather is not found ]', height: 140, pattern: 'cross' },
+  { title: 'Weather',           body: '[ weather is not found ]', height: 100, pattern: 'cross' },
   { title: 'End of feed',       body: 'That is all for now.',                            height: 140 },
 ]
 

@@ -85,7 +85,7 @@
   - `src/components/diagnostics-view.ts`, `src/components/diagnostics-view.css`
 - Modify: `src/main.ts` (all demo-component import paths)
 
-- [ ] Run (single command with semicolons or several, one per file):
+- [x] Run (single command with semicolons or several, one per file):
 ```
 git mv src/components/app-top-bar.ts src/app/components/
 git mv src/components/app-top-bar.css src/app/components/
@@ -103,7 +103,7 @@ git mv src/components/about-view.css src/app/components/
 git mv src/components/diagnostics-view.ts src/app/components/
 git mv src/components/diagnostics-view.css src/app/components/
 ```
-- [ ] Open `src/main.ts` and update component import paths. Replace all occurrences of `./components/` with `./app/components/`. Concrete lines affected:
+- [x] Open `src/main.ts` and update component import paths. Replace all occurrences of `./components/` with `./app/components/`. Concrete lines affected:
   - `import './components/app-top-bar'` → `import './app/components/app-top-bar'`
   - `import './components/app-bottom-bar'` → `import './app/components/app-bottom-bar'`
   - `import './components/app-content'` → `import './app/components/app-content'`
@@ -113,8 +113,8 @@ git mv src/components/diagnostics-view.css src/app/components/
   - `import './components/about-view'` → `import './app/components/about-view'`
   - `import './components/diagnostics-view'` → `import './app/components/diagnostics-view'`
   - `from './components/diagnostics-view'` → `from './app/components/diagnostics-view'`
-- [ ] Run: `npx tsc -b` — expect clean. (Tests may still import from `src/lib/...`; that's fine for this task — lib move is Task 5.)
-- [ ] Commit: `git add -A && git commit -m "Move demo components to src/app/components/"`
+- [x] Run: `npx tsc -b` — expect clean. (Tests may still import from `src/lib/...`; that's fine for this task — lib move is Task 5.) NOTE: tsc shows expected errors because components import `../lib/...` which now points at the still-empty `src/app/lib/`; Task 5 resolves this. Tests pass (5/5).
+- [x] Commit: `git add -A && git commit -m "Move demo components to src/app/components/"`
 
 ---
 

@@ -1,4 +1,5 @@
-import { h, style } from '../lib/dom'
+import { h } from '../lib/dom'
+import './app-bottom-bar.css'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -8,88 +9,46 @@ const TABS = [
   { id: 'about',       label: 'About' },
 ] as const
 
-const CSS = `
-  :host {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    font-family: var(--font);
-  }
-  button {
-    position: relative;
-    padding: 12px 0;
-    font-family: var(--font);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: transparent;
-    border: 0;
-  }
-  button + button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -1px;
-    width: 1px;
-    background: var(--border);
-  }
-  button[data-active="true"]::before,
-  button[data-active="true"] + button::before {
-    opacity: 0;
-  }
-  button[data-active="true"] {
-    color: var(--fg);
-    background: var(--pastel-butter);
-  }
-  button[data-active="true"]::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--pattern-ink);
-    -webkit-mask: url("${BASE}patterns/pattern-dots.svg") repeat;
-            mask: url("${BASE}patterns/pattern-dots.svg") repeat;
-    -webkit-mask-size: 8px 8px;
-            mask-size: 8px 8px;
-    pointer-events: none;
-  }
-  button[data-active="true"] span { position: relative; z-index: 1; }
-`
-
 class AppBottomBar extends HTMLElement {
   static observedAttributes = ['active-tab']
   private buttons: HTMLButtonElement[] = []
 
-  constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.append(style(CSS))
+  connectedCallback() {
+    if (this.buttons.length > 0) return
 
     for (const tab of TABS) {
+      const pattern = h('img', {
+        class: 'pattern',
+        src: `${BASE}patterns/pattern-dots.svg`,
+        'aria-hidden': 'true',
+      })
+      const label = h('span', { class: 'label' }, tab.label)
       const btn = h('button', {
         type: 'button',
         'data-tab': tab.id,
         'data-active': 'false',
-      }, h('span', {}, tab.label)) as HTMLButtonElement
+      }, pattern, label) as HTMLButtonElement
       btn.addEventListener('click', () => {
         this.dispatchEvent(new CustomEvent('tab-change', {
           detail: tab.id,
           bubbles: true,
-          composed: true,
         }))
       })
       this.buttons.push(btn)
-      shadow.append(btn)
+      this.append(btn)
     }
+
+    const active = this.getAttribute('active-tab')
+    if (active) this.syncActive(active)
   }
 
   attributeChangedCallback(name: string, _old: string | null, value: string | null) {
-    if (name === 'active-tab') {
-      for (const btn of this.buttons) {
-        btn.dataset.active = btn.dataset.tab === value ? 'true' : 'false'
-      }
+    if (name === 'active-tab') this.syncActive(value)
+  }
+
+  private syncActive(value: string | null) {
+    for (const btn of this.buttons) {
+      btn.dataset.active = btn.dataset.tab === value ? 'true' : 'false'
     }
   }
 }

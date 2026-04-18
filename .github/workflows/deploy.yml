@@ -23,7 +23,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      - uses: actions/cache@v4
+        id: node-modules-cache
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
+      - if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
       - run: npm run build
         env:
           BASE_URL: /example-pwa/

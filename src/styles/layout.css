@@ -44,8 +44,6 @@ app-shell::after {
 }
 
 app-content {
-  display: block;
-  height: 100%;
   margin: 0 16px;
 }
 

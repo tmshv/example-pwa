@@ -54,7 +54,17 @@ initVersionCheck(async () => {
 })
 ```
 
-`initInsets()` must be the first call — it populates the CSS custom properties the layout binds to. `<app-shell>` expects child elements `<app-top-bar>`, `<app-bottom-bar>`, `<app-content>`, `<app-update-banner>` (or whatever you choose to register); adapt `index.html` to match your element names.
+`initInsets()` must be the first call — it populates the CSS custom properties the layout binds to.
+
+`<app-shell>` hardcodes child-element selectors in `src/core/components/app-shell.ts`:
+- `app-update-banner` — shown/hidden on `sw-state` / `dismiss-update` events
+- `app-content` — receives the active view via `replaceChildren`
+- `app-bottom-bar` — receives the `active-tab` attribute
+- `<tab>-view` — created by `document.createElement(\`${tab}-view\`)` where `tab` is `'feed' | 'diagnostics' | 'about'` (see the `Tab` union at the top of `app-shell.ts`)
+
+If you want different element names or a different tab set, fork `app-shell.ts` and edit those selectors and the `Tab` type. Your `index.html` and demo components must register the same names.
+
+Optional CSS token read by core: `app-shell.css` paints a top/bottom fade using `var(--bg, transparent)`. Define `--bg` in your demo tokens to show the fade; omit it and the fade is invisible (no layout impact).
 
 ## Invariants you must preserve
 

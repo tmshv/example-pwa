@@ -19,11 +19,11 @@ app-shell::after {
 app-shell::before {
   top: 0;
   height: calc(var(--sai-top, env(safe-area-inset-top, 0px)) + 10px + 64px);
-  background: linear-gradient(to bottom, var(--bg) 10px, transparent);
+  background: linear-gradient(to bottom, var(--bg, transparent) 10px, transparent);
 }
 
 app-shell::after {
   bottom: 0;
   height: calc(var(--sai-bottom, env(safe-area-inset-bottom, 0px)) + 64px);
-  background: linear-gradient(to top, var(--bg), transparent);
+  background: linear-gradient(to top, var(--bg, transparent), transparent);
 }

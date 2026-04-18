@@ -38,8 +38,13 @@ const sw = initSW((state) => {
   diag.setSwState(state)
   shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
 })
+const reloadOverlay = document.querySelector('.reload-overlay') as HTMLElement
 shell.addEventListener('reload-app', () => {
-  sw.reload().catch((err) => console.error('SW reload failed:', err))
+  reloadOverlay.hidden = false
+  sw.reload().catch((err) => {
+    console.error('SW reload failed:', err)
+    reloadOverlay.hidden = true
+  })
 })
 shell.addEventListener('check-update', () => {
   sw.checkForUpdate()

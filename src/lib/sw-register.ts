@@ -30,8 +30,7 @@ export function initSW(onState: (s: SwState) => void): SwControl {
         await updateSW(false)
         await controllerChanged
       }
-      await new Promise((r) => setTimeout(r, 150))
-      window.location.replace(window.location.href)
+      window.location.reload()
     },
     async checkForUpdate() {
       if (!registration) return false

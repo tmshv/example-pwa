@@ -40,3 +40,11 @@ app-update-banner {
 app-bottom-bar {
   bottom: calc(env(safe-area-inset-bottom) + 8px);
 }
+
+feed-view,
+about-view,
+diagnostics-view {
+  display: block;
+  font-family: var(--font);
+  color: var(--fg);
+}

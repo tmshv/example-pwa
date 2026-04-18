@@ -1,4 +1,4 @@
-import { h, style } from '../lib/dom'
+import { h } from '../lib/dom'
 import type { PastelToken } from '../lib/card-fill'
 
 type Border = 'solid' | 'dashed'
@@ -35,13 +35,9 @@ const SAMPLES: Sample[] = [
   { title: 'End of feed',       body: 'That is all for now.',                            height: 140 },
 ]
 
-const CSS = `:host { display: block; }`
-
 class FeedView extends HTMLElement {
-  constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.append(style(CSS))
+  connectedCallback() {
+    if (this.childElementCount > 0) return
 
     for (const s of SAMPLES) {
       const attrs: Record<string, string> = {
@@ -56,7 +52,7 @@ class FeedView extends HTMLElement {
         attrs['data-to'] = s.to
         if (s.angle !== undefined) attrs['data-angle'] = String(s.angle)
       }
-      shadow.append(h('feed-card', attrs))
+      this.append(h('feed-card', attrs))
     }
   }
 }

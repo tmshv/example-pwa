@@ -1,5 +1,7 @@
 import { h, style } from '../lib/dom'
 
+const BASE = import.meta.env.BASE_URL
+
 const TABS = [
   { id: 'feed',        label: 'Feed'  },
   { id: 'diagnostics', label: 'Diag'  },
@@ -47,8 +49,8 @@ const CSS = `
     position: absolute;
     inset: 0;
     background: var(--pattern-ink);
-    -webkit-mask: url("/patterns/pattern-dots.svg") repeat;
-            mask: url("/patterns/pattern-dots.svg") repeat;
+    -webkit-mask: url("${BASE}patterns/pattern-dots.svg") repeat;
+            mask: url("${BASE}patterns/pattern-dots.svg") repeat;
     -webkit-mask-size: 8px 8px;
             mask-size: 8px 8px;
     pointer-events: none;

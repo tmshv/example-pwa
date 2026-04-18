@@ -1,6 +1,8 @@
 import { h, style } from '../lib/dom'
 import { applyFill, type CardFill, type GradientType, type PastelToken } from '../lib/card-fill'
 
+const BASE = import.meta.env.BASE_URL
+
 const CSS = `
   :host {
     display: block;
@@ -18,8 +20,8 @@ const CSS = `
     position: absolute;
     inset: 0;
     background: var(--pattern-ink);
-    -webkit-mask: url("/patterns/pattern-slashes.svg") no-repeat top left;
-            mask: url("/patterns/pattern-slashes.svg") no-repeat top left;
+    -webkit-mask: url("${BASE}patterns/pattern-slashes.svg") no-repeat top left;
+            mask: url("${BASE}patterns/pattern-slashes.svg") no-repeat top left;
     -webkit-mask-size: auto;
             mask-size: auto;
     pointer-events: none;
@@ -30,8 +32,8 @@ const CSS = `
     position: absolute;
     inset: 0;
     background: var(--pattern-ink);
-    -webkit-mask: url("/patterns/pattern-plus.svg") no-repeat top left;
-            mask: url("/patterns/pattern-plus.svg") no-repeat top left;
+    -webkit-mask: url("${BASE}patterns/pattern-plus.svg") no-repeat top left;
+            mask: url("${BASE}patterns/pattern-plus.svg") no-repeat top left;
     -webkit-mask-size: auto;
             mask-size: auto;
     pointer-events: none;
@@ -40,7 +42,7 @@ const CSS = `
     content: "";
     position: absolute;
     inset: 0;
-    background: url("/patterns/pattern-cross.svg") no-repeat center / 100% 100%;
+    background: url("${BASE}patterns/pattern-cross.svg") no-repeat center / 100% 100%;
     pointer-events: none;
   }
   .content { position: relative; z-index: 1; }

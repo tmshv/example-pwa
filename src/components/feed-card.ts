@@ -14,6 +14,7 @@ const CSS = `
     font-family: var(--font);
     color: var(--fg);
   }
+  :host([data-border="dashed"]) { border-style: dashed; }
   :host([data-pattern="slashes"])::before,
   :host([data-pattern="both"])::before {
     content: "";

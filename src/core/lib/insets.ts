@@ -38,8 +38,7 @@ export function initInsets(): void {
     const cache = readCache()
     const prev = cache[o] ?? { t: 0, r: 0, b: 0, l: 0, h: 0 }
 
-    // Never decrease insets within an orientation — protects against
-    // iOS reload transient where env() returns 0 for a few frames.
+    // Never decrease — blocks iOS transient env()=0 on reload from overwriting good values. See docs/pwa-layout.md.
     const next: Snap = {
       t: Math.max(t, prev.t),
       r: Math.max(r, prev.r),

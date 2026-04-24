@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { applyFill, type Fill } from '../src/lib/card-fill'
+import { applyFill, type Fill } from '../src/app/lib/card-fill'
 
 describe('applyFill', () => {
   it('sets --grad-from, --grad-to, --grad-bg on the element', () => {

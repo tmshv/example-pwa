@@ -1,7 +1,8 @@
-import './styles/reset.css'
+import '../core/styles/reset.css'
+import '../core/styles/layout.css'
 import './styles/tokens.css'
 import './styles/layout.css'
-import './components/app-shell'
+import '../core/components/app-shell'
 import './components/app-top-bar'
 import './components/app-bottom-bar'
 import './components/app-content'
@@ -11,19 +12,35 @@ import './components/feed-view'
 import './components/about-view'
 import './components/diagnostics-view'
 import { getDiagnostics } from './components/diagnostics-view'
-import { initInsets } from './lib/insets'
-import { initSW } from './lib/sw-register'
-import { initVersionCheck } from './lib/version-check'
+import { initInsets } from '../core/lib/insets'
+import { initSW } from '../core/lib/sw-register'
+import { watchVersion } from '../core/lib/version-check'
+
+type Tab = 'feed' | 'diagnostics' | 'about'
 
 initInsets()
 
-const shell     = document.querySelector('app-shell')      as HTMLElement
-const content   = document.querySelector('app-content')    as HTMLElement
-const topBar    = document.querySelector('app-top-bar')    as HTMLElement
-const bottomBar = document.querySelector('app-bottom-bar') as HTMLElement
+const shell     = document.querySelector('app-shell')         as HTMLElement
+const content   = document.querySelector('app-content')       as HTMLElement
+const topBar    = document.querySelector('app-top-bar')       as HTMLElement
+const bottomBar = document.querySelector('app-bottom-bar')    as HTMLElement
+const banner    = document.querySelector('app-update-banner') as HTMLElement
 
+let currentTab: Tab = 'feed'
 content.replaceChildren(document.createElement('feed-view'))
-bottomBar.setAttribute('active-tab', 'feed')
+bottomBar.setAttribute('active-tab', currentTab)
+
+shell.addEventListener('tab-change', (e) => {
+  const tab = (e as CustomEvent<Tab>).detail
+  if (currentTab === tab) return
+  currentTab = tab
+  content.replaceChildren(document.createElement(`${tab}-view`))
+  bottomBar.setAttribute('active-tab', tab)
+})
+
+shell.addEventListener('dismiss-update', () => {
+  banner.setAttribute('hidden', '')
+})
 
 const diag = getDiagnostics()
 diag.setContent(content)
@@ -39,7 +56,9 @@ diag.subscribe((snap) => {
 
 const sw = initSW((state) => {
   diag.setSwState(state)
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: state }))
+  if (state === 'update-available') {
+    banner.removeAttribute('hidden')
+  }
 })
 const reloadOverlay = document.querySelector('.reload-overlay') as HTMLElement
 const hideOverlay = () => { reloadOverlay.hidden = true }
@@ -59,8 +78,10 @@ shell.addEventListener('check-update', () => {
   sw.checkForUpdate()
 })
 
-initVersionCheck(async () => {
-  await sw.checkForUpdate()
-  diag.setSwState('update-available')
-  shell.dispatchEvent(new CustomEvent('sw-state', { detail: 'update-available' }))
-})
+;(async () => {
+  for await (const _ of watchVersion(new URL('version.json', document.baseURI))) {
+    await sw.checkForUpdate()
+    diag.setSwState('update-available')
+    banner.removeAttribute('hidden')
+  }
+})()

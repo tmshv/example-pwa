@@ -14,7 +14,7 @@ import './components/diagnostics-view'
 import { getDiagnostics } from './components/diagnostics-view'
 import { initInsets } from '../core/lib/insets'
 import { initSW } from '../core/lib/sw-register'
-import { initVersionCheck } from '../core/lib/version-check'
+import { watchVersion } from '../core/lib/version-check'
 
 type Tab = 'feed' | 'diagnostics' | 'about'
 
@@ -78,8 +78,10 @@ shell.addEventListener('check-update', () => {
   sw.checkForUpdate()
 })
 
-initVersionCheck(async () => {
-  await sw.checkForUpdate()
-  diag.setSwState('update-available')
-  banner.removeAttribute('hidden')
-})
+;(async () => {
+  for await (const _ of watchVersion(new URL('version.json', document.baseURI))) {
+    await sw.checkForUpdate()
+    diag.setSwState('update-available')
+    banner.removeAttribute('hidden')
+  }
+})()

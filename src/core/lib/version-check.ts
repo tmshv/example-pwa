@@ -1,33 +1,79 @@
-const POLL_INTERVAL = 30_000
+const DEFAULT_POLL_INTERVAL = 30_000
 
 type VersionPayload = { version?: string }
 
-export function initVersionCheck(onUpdateAvailable: () => void): { check: () => Promise<void> } {
-  const current = __SW_VERSION__
-  let notified = false
+type WatchOptions = {
+  pollInterval?: number
+  signal?: AbortSignal
+}
 
-  const check = async () => {
-    if (notified) return
-    try {
-      const res = await fetch(`${import.meta.env.BASE_URL}version.json`, {
-        cache: 'no-store',
-      })
-      if (!res.ok) return
-      const data = (await res.json()) as VersionPayload
-      if (data.version && data.version !== current) {
-        notified = true
-        onUpdateAvailable()
+export async function* watchVersion(
+  url: URL,
+  opts: WatchOptions = {},
+): AsyncGenerator<string> {
+  const interval = opts.pollInterval ?? DEFAULT_POLL_INTERVAL
+  const { signal } = opts
+  let lastSeen = __SW_VERSION__
+
+  try {
+    while (true) {
+      if (signal?.aborted) return
+      const version = await fetchVersion(url, signal)
+      if (version && version !== lastSeen) {
+        lastSeen = version
+        yield version
       }
-    } catch (err) {
-      console.error('Version check failed:', err)
+      await waitNext(interval, signal)
     }
+  } catch (err) {
+    if ((err as Error).name === 'AbortError') return
+    throw err
   }
+}
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') check()
+async function fetchVersion(
+  url: URL,
+  signal?: AbortSignal,
+): Promise<string | null> {
+  try {
+    const res = await fetch(url, { cache: 'no-store', signal })
+    if (!res.ok) return null
+    const data = (await res.json()) as VersionPayload
+    return data.version ?? null
+  } catch (err) {
+    if ((err as Error).name === 'AbortError') throw err
+    console.error('Version check failed:', err)
+    return null
+  }
+}
+
+function waitNext(interval: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new DOMException('Aborted', 'AbortError'))
+      return
+    }
+    const cleanup = () => {
+      clearTimeout(timer)
+      document.removeEventListener('visibilitychange', onVisible)
+      signal?.removeEventListener('abort', onAbort)
+    }
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') {
+        cleanup()
+        resolve()
+      }
+    }
+    const onAbort = () => {
+      cleanup()
+      reject(new DOMException('Aborted', 'AbortError'))
+    }
+    const timer = setTimeout(() => {
+      cleanup()
+      resolve()
+    }, interval)
+
+    document.addEventListener('visibilitychange', onVisible)
+    signal?.addEventListener('abort', onAbort)
   })
-  setInterval(check, POLL_INTERVAL)
-  check()
-
-  return { check }
 }

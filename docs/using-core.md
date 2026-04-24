@@ -33,7 +33,7 @@ import '../core/components/app-shell'
 
 import { initInsets } from '../core/lib/insets'
 import { initSW } from '../core/lib/sw-register'
-import { initVersionCheck } from '../core/lib/version-check'
+import { watchVersion } from '../core/lib/version-check'
 
 initInsets()
 
@@ -46,9 +46,11 @@ const sw = initSW((state) => {
 // When your UI asks to reload:
 // sw.reload().catch((err) => console.error('SW reload failed:', err))
 
-initVersionCheck(async () => {
-  await sw.checkForUpdate()
-})
+;(async () => {
+  for await (const _ of watchVersion(new URL('version.json', document.baseURI))) {
+    await sw.checkForUpdate()
+  }
+})()
 ```
 
 `initInsets()` must be the first call — it populates the CSS custom properties the layout binds to.

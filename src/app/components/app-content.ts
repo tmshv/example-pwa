@@ -1,5 +1,5 @@
-import './app-content.css'
+import "./app-content.css"
 
 class AppContent extends HTMLElement {}
 
-customElements.define('app-content', AppContent)
+customElements.define("app-content", AppContent)
